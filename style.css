@@ -1,11 +1,11 @@
 /* ========== Base Styles & Variables ========== */
 :root {
   /* Brand Colors */
-  --color-primary: #075697;
-  --color-white: #fff;
   --color-black: #000;
   --color-gray: #333;
   --color-light-gray: #666;
+  --color-primary: #075697;
+  --color-white: #fff;
 }
 
 /* ========== Reset & Global Styles ========== */
@@ -15,6 +15,7 @@
   padding: 0;
 }
 
+/* ========== Font Definitions ========== */
 @font-face {
   font-family: 'Helvetica-Bold';
   src: url('../fonts/Helvetica-Bold.ttf') format('truetype');
@@ -69,51 +70,105 @@
   font-family: 'HelveticaConBQ-Medium';
   src: url('../fonts/HelveticaConBQ-Medium.otf') format('opentype');
 }
+
+/* ========== Header Styles ========== */
+/* Main Header Container */
 .site-header {
-  border-top: 10px solid var(--color-primary);
   background-color: var(--color-white);
+  border-top: 10px solid var(--color-primary);
 }
+
 .site-header__container {
-  max-width: 1248px;
   margin: 0 auto;
+  max-width: 1248px;
   padding: 22px 0 26px 0;
 }
-.site-header__ecaps-button {
-  border-radius: 21px;
-  border: 1px solid var(--color-primary);
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  padding: 4px 12px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  text-decoration: none;
-  font-family: 'HelveticaCE', sans-serif;
+
+/* Top Bar Section */
+.site-header__top-bar {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
 }
+
+/* Center Section */
+.site-header__center {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
 .site-header__center-text {
   color: var(--color-primary);
   font-family: 'HelveticaCE', sans-serif;
   font-size: 14px;
   font-weight: 400;
 }
-.site-header__top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  position: relative;
+
+.site-header__ecaps-button {
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: 21px;
+  color: var(--color-white);
+  font-family: 'HelveticaCE', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 4px 12px;
+  text-decoration: none;
 }
-.site-header__center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  gap: 5px;
-}
+
+/* Right Section */
 .site-header__right {
   display: flex;
   justify-content: flex-end;
   max-width: 400px;
   width: 100%;
+}
+
+/* Login and Register Buttons */
+.site-header__login-button,
+.site-header__register-button {
+  /* Add styles when implemented */
+  color: var(--color-primary);
+  font-family: 'HelveticaCE', sans-serif;
+  font-size: 14px;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+/* Logo and Navigation Bar Section */
+.site-header__logo-nav-bar {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.site-header__logo-nav-bar img {
+  height: auto;
+  max-width: 287px;
+  width: 100%;
+}
+
+.site-header__logo-nav-bar nav ul {
+  display: flex;
+  list-style: none;
+}
+
+.site-header__logo-nav-bar nav ul li {
+  margin-left: 25px;
+}
+
+.site-header__logo-nav-bar nav ul li a {
+  color: var(--color-primary);
+  font-family: 'HelveticaCE-CondBold', sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
 }
