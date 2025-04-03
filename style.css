@@ -90,6 +90,7 @@
   display: flex;
   justify-content: flex-end;
   position: relative;
+  min-height: 26px;
 }
 
 /* Center Section */
@@ -101,6 +102,7 @@
   position: absolute;
   transform: translateX(-50%);
   white-space: nowrap;
+  top: 0;
 }
 
 .site-header__center-text {
@@ -119,7 +121,7 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
-  padding: 4px 12px;
+  padding: 2px 12px;
   text-decoration: none;
 }
 
@@ -144,31 +146,71 @@
 
 /* Logo and Navigation Bar Section */
 .site-header__logo-nav-bar {
-  align-items: center;
+  align-items: flex-end;
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
 }
 
 .site-header__logo-nav-bar img {
   height: auto;
   max-width: 287px;
   width: 100%;
+  margin-bottom: 8px;
 }
 
-.site-header__logo-nav-bar nav ul {
+.site-header__navigation {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+}
+
+.site-header__nav-list {
   display: flex;
   list-style: none;
+  gap: 62px;
 }
 
-.site-header__logo-nav-bar nav ul li {
-  margin-left: 25px;
+.site-header__nav-item {
 }
 
-.site-header__logo-nav-bar nav ul li a {
+.site-header__nav-link {
+  color: var(--color-gray);
+  font-family: 'HelveticaCE', sans-serif; /* Changed to match other font usage */
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none; /* Added missing text decoration */
+  letter-spacing: 0;
+  text-align: left;
+  line-height: 21px;
+}
+.site-header__nav-link:hover {
   color: var(--color-primary);
-  font-family: 'HelveticaCE-CondBold', sans-serif;
-  font-size: 16px;
   text-decoration: none;
-  text-transform: uppercase;
+  padding-bottom: 2px;
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.outline-medium-btn-with-icon {
+  border: 1px solid var(--color-primary);
+  border-radius: 21px;
+  color: var(--color-primary);
+  background-color: var(--color-white);
+  font-family: 'HelveticaCE', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 7px 18px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.outline-medium-btn-with-icon:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+.material-symbols-outlined {
+  font-size: 17px;
 }
