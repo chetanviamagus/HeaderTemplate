@@ -211,7 +211,6 @@
 
 /* Dropdown Menu */
 .dropdown-menu {
-  
   display: none;
   left: 0;
   margin: 0 auto;
@@ -220,6 +219,102 @@
   right: 0;
   top: 134px;
   z-index: 1000;
+  background: var(--color-white);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 779px;
+  height: 387px;
+  background: var(--color-white);
+  padding: 20px 40px;
+  border: 1px solid var(--color-primary);
+  box-sizing: border-box;
+}
+
+.submenu-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.submenu-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.submenu-header-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.submenu-title {
+  font-family: var(--font-family-base);
+  font-size: 24px;
+  color: var(--color-black);
+}
+
+.submenu-close {
+  cursor: pointer;
+  color: var(--color-gray);
+  transition: var(--transition-base);
+}
+
+.submenu-close:hover {
+  color: var(--color-primary);
+}
+
+.submenu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.submenu-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.submenu-item {
+  color: var(--color-gray);
+  text-decoration: none;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  transition: var(--transition-base);
+  padding: 8px 0;
+}
+
+.submenu-item:hover {
+  color: var(--color-primary);
+}
+
+.submenu-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-gray);
+  text-decoration: none;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.submenu-back:hover {
+  color: var(--color-primary);
+}
+
+.dropdown-item#fans-menu-trigger:hover + .submenu,
+.submenu:hover {
+  display: block;
 }
 
 .h2_products {
@@ -247,6 +342,7 @@
 
 .dropdown-item {
   align-items: center;
+  border: transparent 2px solid;
   border-radius: 8px;
   color: var(--color-gray);
   display: flex;
