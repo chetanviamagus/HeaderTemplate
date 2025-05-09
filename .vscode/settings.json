@@ -1,4 +1,7 @@
 {
     "liveServer.settings.port": 5501,
-    "workbench.colorTheme": "Monokai Dimmed"
+    "workbench.colorTheme": "Monokai Dimmed",
+    "cSpell.words": [
+        "Greenheck"
+    ]
 }

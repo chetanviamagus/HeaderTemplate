@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Greenheck - Building Value in Air</title>
+    <link rel="icon" type="image/x-icon" href="./imgs/favicon.ico" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&URL_ADDRESS"
@@ -22,6 +23,7 @@
         --font-size-nav: 18px;
         --transition-base: all 0.2s ease-in-out;
         --max-width-container: 1248px;
+        --color-bg-popup: #f7f8fa;
       }
 
       * {
@@ -98,6 +100,7 @@
         src: url('./fonts/HelveticaConBQ-Medium.otf') format('opentype');
         font-display: swap;
       }
+
       .material-symbols-outlined {
         font-size: 22px !important;
       }
@@ -154,6 +157,45 @@
         width: 27px;
       }
       /* Header Layout */
+      .standard-dropdown {
+        min-width: 600px;
+        padding: 24px;
+      }
+
+      .dropdown-header {
+        color: var(--color-black);
+        font-family: var(--font-family-base);
+        font-size: 22px;
+        font-weight: 500;
+        margin-bottom: 20px;
+        padding: 0 53px !important;
+      }
+
+      .standard-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .dropdown-row {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+      }
+
+      .standard-item {
+        color: var(--color-gray);
+        text-decoration: none;
+        font-family: var(--font-family-base);
+        font-size: var(--font-size-base);
+        transition: var(--transition-base);
+        padding: 8px 0;
+        border-radius: 4px;
+      }
+
+      .standard-item:hover {
+        color: var(--color-primary);
+      }
       .site-header {
         background-color: var(--color-white);
         border-top: 10px solid var(--color-primary);
@@ -317,7 +359,7 @@
         border-radius: 0;
         box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         display: none;
-        padding: 24px 0;
+        padding: 34px 0 24px 0;
         margin: 0;
         transition: var(--transition-base);
         z-index: 1000;
@@ -343,7 +385,10 @@
         max-width: var(--max-width-container);
         padding: 0 24px;
       }
-
+      .dropdown-header,
+      .standard-grid {
+        max-width: 673px;
+      }
       .dropdown-menu::before {
         content: none;
       }
@@ -417,13 +462,14 @@
       }
 
       .submenu-content {
-        max-width: var(--max-width-container);
+        max-width: 778px;
         margin: 0 auto;
         position: relative;
-        background-color: #fff;
-        border-radius: 8px;
-        padding: 20px;
+        background-color: var(--color-bg-popup);
+        /* border-radius removed */
+        padding: 30px 25px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--color-primary);
       }
 
       .submenu-header {
@@ -441,8 +487,9 @@
 
       .submenu-header-bottom {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        padding: 0 29px;
+        justify-content: space-between;
       }
 
       .submenu-title {
@@ -473,15 +520,33 @@
         gap: 12px;
       }
 
+      .submenu-items-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 9px 112px;
+        margin-top: 0px;
+        margin-bottom: 16px;
+        padding: 0 0 0 29px;
+      }
       .submenu-item {
+        min-width: 180px;
+        flex: 1 1 180px;
+        max-width: 220px;
         color: var(--color-gray);
         text-decoration: none;
         font-family: var(--font-family-base);
         font-size: var(--font-size-base);
         transition: var(--transition-base);
         padding: 8px 0;
+        border-radius: 4px;
       }
-
+      .submenu-view-all-link {
+        color: var(--color-primary);
+        text-decoration: none;
+        font-family: var(--font-family-base);
+        font-size: var(--font-size-base);
+        transition: var(--transition-base);
+      }
       .submenu-item:hover {
         color: var(--color-primary);
       }
@@ -516,24 +581,493 @@
       }
 
       /* Divider */
-      .divder_line {
+      .divider_line {
         background-color: var(--color-light-gray);
         height: 20px;
         margin: 0 10px;
         width: 1px;
       }
 
-      /* Product Title */
       .h2_products {
         color: var(--color-black);
         font-family: var(--font-family-base);
         font-size: 22px;
+        font-weight: 500;
         margin-left: 98px;
+      }
+
+      #mobile-nav-toggle {
+        display: none;
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        z-index: 1200;
+        background: none;
+        border: none;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+      }
+      #mobile-nav-toggle .material-symbols-outlined {
+        font-size: 32px;
+        color: var(--color-primary);
+      }
+      #mobile-nav {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: var(--color-white);
+        z-index: 2000;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(-100%);
+      }
+      #mobile-nav.open {
+        display: flex;
+        transform: translateX(0);
+      }
+      .mobile-nav-header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 16px 0 16px;
+        min-height: 64px;
+        background: #fff;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      .mobile-nav-search-group {
+        position: relative;
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+      .mobile-nav-search-input {
+        width: 100%;
+        background: #fff;
+        border: none;
+        outline: none;
+        font-size: 14px;
+        font-family: var(--font-family-base);
+        font-weight: 500;
+        padding: 10px 74px 10px 70px;
+        margin: 0;
+        box-sizing: border-box;
+        border-radius: 8px;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .mobile-nav-search-icon {
+        font-size: 19px !important;
+        position: absolute;
+        right: 82px !important;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #888;
+        pointer-events: none;
+      }
+      .mobile-nav-close {
+        background: none;
+        border: none;
+        font-size: 32px;
+        color: var(--color-primary);
+        cursor: pointer;
+        margin-left: 16px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mobile-nav-actions {
+        padding: 32px 24px 32px 70px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        background: #fff;
+      }
+      .mobile-nav-action-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        font-size: 20px;
+        font-family: var(--font-family-base);
+        font-weight: 600;
+        color: var(--color-primary);
+        background: #fff;
+        border: 2px solid var(--color-primary);
+        border-radius: 32px;
+        padding: 18px 0;
+        text-decoration: none;
+        transition: background 0.15s, color 0.15s;
+      }
+      .mobile-nav-action-btn:hover {
+        background: var(--color-primary);
+        color: #fff;
+      }
+
+      .mobile-nav-search-row {
+        width: 100%;
+        background: #fff;
+        margin: 0;
+        padding: 0;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 1px solid #333;
+        display: flex;
+        align-items: center;
+      }
+
+      .mobile-nav-close-row {
+        width: 100%;
+        background: #f4f4f4;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 30px 70px 17px 70px;
+        border-bottom: 0;
+      }
+      .mobile-nav-close-text {
+        font-size: 18px;
+        font-family: var(--font-family-base);
+        font-weight: 500;
+        color: #333;
+      }
+
+      .mobile-nav-link .material-symbols-outlined {
+        font-size: 28px;
+        color: var(--color-primary);
+        margin-left: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mobile-nav-subheader-row {
+        width: 100%;
+        background: #f4f4f4;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        min-height: 64px;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      .mobile-nav-back {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 28px;
+        font-family: var(--font-family-base);
+        font-weight: 700;
+        color: #333;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+      }
+      .mobile-nav-back .material-symbols-outlined {
+        font-size: 32px;
+        color: #333;
+        margin-right: 2px;
+      }
+      .mobile-nav-subheader-row .mobile-nav-close {
+        background: none;
+        border: none;
+        font-size: 32px;
+        color: #333;
+        cursor: pointer;
+        margin-left: 16px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 44px;
+        width: 44px;
+      }
+      .mobile-nav-viewall {
+        font-size: 20px;
+        font-family: var(--font-family-base);
+        font-weight: 600;
+        color: #333;
+        text-decoration: underline;
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin: 0 16px;
+        padding: 0;
+      }
+      .mobile-nav-heading {
+        font-size: 32px;
+        font-family: var(--font-family-base);
+        font-weight: 700;
+        color: #222;
+        padding: 32px 24px 8px 24px;
+        margin: 0;
+        background: #fff;
+      }
+      .mobile-nav-list {
+        /* flex: 1 1 auto; */
+        overflow-y: auto;
+        padding: 0 76px 0 70px;
+        margin: 0;
+        list-style: none;
+        background: #fff;
+      }
+
+      .mobile-nav-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 24px 0 24px 0;
+        font-size: 22px;
+        color: var(--color-gray);
+        font-family: var(--font-family-base);
+        font-weight: 600;
+        text-decoration: none;
+        background: none;
+        border: none;
+        width: 100%;
+        cursor: pointer;
+        transition: background 0.15s;
+        text-align: left;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+      .mobile-nav-link .mobile-nav-arrow {
+        font-size: 28px;
+        color: #333;
+        margin-left: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .mobile-nav-link img {
+        width: 28px;
+        height: 28px;
+        margin-right: 16px;
+        object-fit: contain;
+      }
+
+      /* Add/replace CSS for submenu flex layout */
+      @media (max-width: 991px) {
+        .site-header__logo-nav-bar,
+        .site-header__navigation,
+        .site-header__top-bar {
+          display: none !important;
+        }
+        #mobile-nav-toggle {
+          display: flex !important;
+        }
+        #mobile-nav {
+          display: none;
+          flex-direction: column;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: var(--color-white);
+          z-index: 2000;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transform: translateX(-100%);
+        }
+        #mobile-nav.open {
+          display: flex;
+          transform: translateX(0);
+        }
+        .mobile-nav-header-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 20px 24px 0 24px;
+          min-height: 64px;
+          border-bottom: 1px solid #e5e7eb;
+        }
+        .mobile-nav-search-group {
+          position: relative;
+          flex: 1 1 auto;
+          display: flex;
+          align-items: center;
+        }
+        .mobile-nav-search-input {
+          width: 100%;
+          padding: 10px 70px 10px 70px;
+          border-radius: 8px;
+          border: 1px solid #e5e7eb;
+          font-size: 14px;
+          font-family: var(--font-family-base);
+          font-weight: 500;
+          background: #fff;
+        }
+        .mobile-nav-search-icon {
+          position: absolute;
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 24px;
+          color: #888;
+          pointer-events: none;
+        }
+        .mobile-nav-close {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          background: none;
+          border: none;
+          font-size: 32px;
+          color: var(--color-primary);
+          cursor: pointer;
+          margin-left: 16px;
+          flex-shrink: 0;
+        }
+        .mobile-nav-close .material-symbols-outlined {
+          font-size: 36px !important;
+        }
+        .mobile-nav-list {
+          /* flex: 1 1 auto; */
+          overflow-y: auto;
+          padding: 0 76px 0 70px;
+          margin: 0;
+          list-style: none;
+        }
+        .mobile-nav-item {
+          border-bottom: 1px solid #e5e7eb;
+        }
+        .mobile-nav-item:last-child {
+          border-bottom: none;
+        }
+        .mobile-nav-link {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 20px 0 17px;
+          font-size: 18px;
+          color: var(--color-gray);
+          font-family: var(--font-family-base);
+          font-weight: 500;
+          text-decoration: none;
+          background: none;
+          border: none;
+          width: 100%;
+          cursor: pointer;
+          transition: background 0.15s;
+        }
+
+        .mobile-nav-link img {
+          width: 28px;
+          height: 28px;
+          margin-right: 16px;
+          object-fit: contain;
+        }
+        .mobile-nav-back {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 20px 24px;
+          font-size: 18px;
+          color: var(--color-primary);
+          background: none;
+          border: none;
+          cursor: pointer;
+          font-family: var(--font-family-base);
+          font-weight: 500;
+        }
+        .mobile-nav-actions {
+          padding: 26px 70px 22px 70px;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+        .mobile-nav-action-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          width: 100%;
+          font-size: 16px;
+          font-family: var(--font-family-base);
+          font-weight: 500;
+          color: var(--color-primary);
+          background: #fff;
+          border: 1px solid var(--color-primary);
+          border-radius: 32px;
+          padding: 12px 0;
+          text-decoration: none;
+          transition: background 0.15s, color 0.15s;
+        }
+        .mobile-nav-action-btn:hover {
+          background: var(--color-primary);
+          color: #fff;
+        }
+        .mobile-nav-action-btn .material-symbols-outlined {
+          font-size: 18px !important;
+          color: var(--color-primary);
+        }
+        .mobile-nav-action-btn:hover .material-symbols-outlined {
+          color: #fff;
+        }
+      }
+      @media (max-width: 408px) {
+        .mobile-nav-close-row,
+        .mobile-nav-search-input,
+        .mobile-nav-list,
+        .mobile-nav-actions {
+          padding-left: 40px;
+          padding-right: 40px;
+        }
+        .mobile-nav-search-icon {
+          right: 52px !important;
+        }
       }
     </style>
   </head>
 
   <body>
+    <nav id="mobile-nav" aria-modal="true" role="dialog" tabindex="-1">
+      <div class="mobile-nav-search-row">
+        <div class="mobile-nav-search-group">
+          <input
+            type="search"
+            placeholder="Search"
+            aria-label="Search navigation"
+            class="mobile-nav-search-input"
+          />
+          <span class="material-symbols-outlined mobile-nav-search-icon" aria-hidden="true"
+            >search</span
+          >
+        </div>
+      </div>
+      <div id="mobile-nav-header-container"></div>
+      <div id="mobile-nav-heading-container"></div>
+      <ul class="mobile-nav-list" id="mobile-nav-list"></ul>
+      <div class="mobile-nav-actions">
+        <a href="#" class="mobile-nav-action-btn" id="mobile-login-btn">
+          <span class="material-symbols-outlined font_black">manage_accounts</span>
+          Log In
+        </a>
+        <a href="#" class="mobile-nav-action-btn" id="mobile-find-rep-btn">
+          <span class="material-symbols-outlined text-17">clarify</span>
+          Find My Rep
+        </a>
+      </div>
+    </nav>
+    <button id="mobile-nav-toggle" aria-label="Open menu">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
     <header class="site-header">
       <div class="site-header__container">
         <div class="site-header__top-bar">
@@ -550,7 +1084,7 @@
             <a href="#" class="site-header__icon-button">
               <span class="material-symbols-outlined font_black text">search</span>
             </a>
-            <span class="divder_line"></span>
+            <span class="divider_line"></span>
             <a href="#" class="site-header__icon-button">
               <span class="material-symbols-outlined font_black">manage_accounts</span>
             </a>
@@ -558,7 +1092,7 @@
         </div>
         <div class="site-header__logo-nav-bar">
           <img src="imgs/Greenheck_Logo_Horizontal_Blue.png" alt="Greenheck" />
-          <nav class="site-header__navigation">
+          <nav class="site-header__navigation" aria-label="Main navigation">
             <!-- Navigation will be dynamically generated here -->
             <a href="#" class="outline-medium-btn-with-icon">
               <span class="material-symbols-outlined text-17">clarify</span>
@@ -678,507 +1212,896 @@
         mainNav: [
           {
             title: 'Products',
-            type: 'megamenu',
             layout: 'mega',
             items: [
               {
                 title: 'Fans',
-                icon: 'imgs/Fans.png',
-                submenu: {
-                  title: 'Fans',
-                  viewAll: true,
-                  columns: [
-                    {
-                      items: [
-                        'Roof Exhaust',
-                        'Roof Supply',
-                        'Wall Mounted',
-                        'Ceiling Exhaust',
-                        'Inline',
-                      ],
-                    },
-                    { items: ['Blowers', 'Gravity', 'Overhead HVLS', 'Plenums', 'Fume Exhaust'] },
-                    {
-                      items: [
-                        'Directional Destratification',
-                        'Laboratory Exhaust',
-                        'Arrays',
-                        'Circulators',
-                        'Condenser',
-                      ],
-                    },
-                  ],
-                },
+                icon: 'https://chetanviamagus.github.io/HeaderTemplate/imgs/Fans.png',
+                url: 'https://www.greenheck.com/products/fans',
+                items: [
+                  {
+                    title: 'Roof Exhaust',
+                    url: 'https://www.greenheck.com/products/fans/roof-exhaust',
+                  },
+                  {
+                    title: 'Roof Supply',
+                    url: 'https://www.greenheck.com/products/fans/roof-supply',
+                  },
+                  {
+                    title: 'Wall Mounted',
+                    url: 'https://www.greenheck.com/products/fans/wall-mounted',
+                  },
+                  {
+                    title: 'Ceiling Exhaust',
+                    url: 'https://www.greenheck.com/products/fans/ceiling-exhaust',
+                  },
+                  { title: 'Inline', url: 'https://www.greenheck.com/products/fans/inline' },
+                  { title: 'Blowers', url: 'https://www.greenheck.com/products/fans/blowers' },
+                  { title: 'Gravity', url: 'https://www.greenheck.com/products/fans/gravity' },
+                  {
+                    title: 'Overhead HVLS',
+                    url: 'https://www.greenheck.com/products/fans/overhead-hvls',
+                  },
+                  { title: 'Plenums', url: 'https://www.greenheck.com/products/fans/plenums' },
+                  {
+                    title: 'Fume Exhaust',
+                    url: 'https://www.greenheck.com/products/fans/fume-exhaust',
+                  },
+                  {
+                    title: 'Directional Destratification',
+                    url: 'https://www.greenheck.com/products/fans/directional-destratification',
+                  },
+                  {
+                    title: 'Laboratory Exhaust',
+                    url: 'https://www.greenheck.com/products/fans/laboratory-exhaust',
+                  },
+                  { title: 'Arrays', url: 'https://www.greenheck.com/products/fans/arrays' },
+                  {
+                    title: 'Circulators',
+                    url: 'https://www.greenheck.com/products/fans/circulators',
+                  },
+                  {
+                    title: 'Condenser',
+                    url: 'https://www.greenheck.com/products/fans/condenser',
+                  },
+                ],
               },
               {
                 title: 'Dampers',
-                icon: 'imgs/Dampers.png',
-                submenu: {
-                  title: 'Dampers',
-                  viewAll: true,
-                  columns: [
-                    {
-                      items: [
-                        'Control Dampers',
-                        'Backdraft Dampers',
-                        'Industrial Dampers',
-                        'Fire Dampers',
-                        'Smoke Dampers',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Combination Fire/Smoke Dampers',
-                        'Ceiling Radiation Dampers',
-                        'Corridor Dampers',
-                        'Heavy Duty Dampers',
-                        'Blast Dampers',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Tunnel Dampers',
-                        'Marine Dampers',
-                        'Specialty Dampers',
-                        'Custom Dampers',
-                      ],
-                    },
-                  ],
-                },
+                icon: 'https://chetanviamagus.github.io/HeaderTemplate/imgs/Dampers.png',
+                url: 'https://www.greenheck.com/products/dampers',
+                items: [
+                  {
+                    title: 'Control Dampers',
+                    url: 'https://www.greenheck.com/products/dampers/control-dampers',
+                  },
+                  {
+                    title: 'Backdraft Dampers',
+                    url: 'https://www.greenheck.com/products/dampers/backdraft-dampers',
+                  },
+                  {
+                    title: 'Industrial Dampers',
+                    url: 'https://www.greenheck.com/products/dampers/industrial-dampers',
+                  },
+                  {
+                    title: 'Fire Dampers',
+                    url: 'https://www.greenheck.com/products/dampers/fire-dampers',
+                  },
+                  {
+                    title: 'Smoke Dampers',
+                    url: 'https://www.greenheck.com/products/dampers/smoke-dampers',
+                  },
+                  {
+                    title: 'Combination Fire/Smoke Dampers',
+                    url: 'https://www.greenheck.com/products/dampers/combination-fire-smoke-dampers',
+                  },
+                  {
+                    title: 'Ceiling Radiation Dampers',
+                    url: 'https://www.greenheck.com/products/dampers/ceiling-radiation-dampers',
+                  },
+                  {
+                    title: 'Corridor Dampers',
+                    url: 'https://www.greenheck.com/products/dampers/corridor-dampers',
+                  },
+                  {
+                    title: 'Heavy Duty Dampers',
+                    url: 'https://www.greenheck.com/products/dampers/heavy-duty-dampers',
+                  },
+                  {
+                    title: 'Blast Dampers',
+                    url: 'https://www.greenheck.com/products/dampers/blast-dampers',
+                  },
+                  {
+                    title: 'Tunnel Dampers',
+                    url: 'https://www.greenheck.com/products/dampers/tunnel-dampers',
+                  },
+                  {
+                    title: 'Marine Dampers',
+                    url: 'https://www.greenheck.com/products/dampers/marine-dampers',
+                  },
+                  {
+                    title: 'Specialty Dampers',
+                    url: 'https://www.greenheck.com/products/dampers/specialty-dampers',
+                  },
+                  {
+                    title: 'Custom Dampers',
+                    url: 'https://www.greenheck.com/products/dampers/custom-dampers',
+                  },
+                ],
               },
               {
                 title: 'Louvers',
-                icon: 'imgs/Louvers.png',
-                submenu: {
-                  title: 'Louvers',
-                  viewAll: true,
-                  columns: [
-                    {
-                      items: [
-                        'Stationary Louvers',
-                        'Adjustable Louvers',
-                        'Combination Louvers',
-                        'Wind-Driven Rain Louvers',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Hurricane Louvers',
-                        'Acoustic Louvers',
-                        'Equipment Screens',
-                        'Penthouses',
-                      ],
-                    },
-                    { items: ['Sand Louvers', 'Specialty Louvers', 'Custom Louvers'] },
-                  ],
-                },
+                icon: 'https://chetanviamagus.github.io/HeaderTemplate/imgs/Louvers.png',
+                url: 'https://www.greenheck.com/products/louvers',
+                items: [
+                  {
+                    title: 'Stationary Louvers',
+                    url: 'https://www.greenheck.com/products/louvers/stationary-louvers',
+                  },
+                  {
+                    title: 'Adjustable Louvers',
+                    url: 'https://www.greenheck.com/products/louvers/adjustable-louvers',
+                  },
+                  {
+                    title: 'Combination Louvers',
+                    url: 'https://www.greenheck.com/products/louvers/combination-louvers',
+                  },
+                  {
+                    title: 'Wind-Driven Rain Louvers',
+                    url: 'https://www.greenheck.com/products/louvers/wind-driven-rain-louvers',
+                  },
+                  {
+                    title: 'Hurricane Louvers',
+                    url: 'https://www.greenheck.com/products/louvers/hurricane-louvers',
+                  },
+                  {
+                    title: 'Acoustic Louvers',
+                    url: 'https://www.greenheck.com/products/louvers/acoustic-louvers',
+                  },
+                  {
+                    title: 'Equipment Screens',
+                    url: 'https://www.greenheck.com/products/louvers/equipment-screens',
+                  },
+                  {
+                    title: 'Penthouses',
+                    url: 'https://www.greenheck.com/products/louvers/penthouses',
+                  },
+                  {
+                    title: 'Sand Louvers',
+                    url: 'https://www.greenheck.com/products/louvers/sand-louvers',
+                  },
+                  {
+                    title: 'Specialty Louvers',
+                    url: 'https://www.greenheck.com/products/louvers/specialty-louvers',
+                  },
+                  {
+                    title: 'Custom Louvers',
+                    url: 'https://www.greenheck.com/products/louvers/custom-louvers',
+                  },
+                ],
               },
               {
                 title: 'Grilles, Registers & Diffusers',
-                icon: 'imgs/GrillesRegistersDiffusers.png',
-                submenu: {
-                  title: 'Grilles, Registers & Diffusers',
-                  viewAll: true,
-                  columns: [
-                    {
-                      items: [
-                        'Supply Grilles',
-                        'Return Grilles',
-                        'Linear Grilles',
-                        'Security Grilles',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Ceiling Diffusers',
-                        'Linear Diffusers',
-                        'High Performance Diffusers',
-                        'Displacement Diffusers',
-                      ],
-                    },
-                    { items: ['Nozzle Diffusers', 'Custom Grilles & Diffusers'] },
-                  ],
-                },
+                icon: 'https://chetanviamagus.github.io/HeaderTemplate/imgs/GrillesRegistersDiffusers.png',
+                url: 'https://www.greenheck.com/products/grilles-registers-diffusers',
+                items: [
+                  {
+                    title: 'Supply Grilles',
+                    url: 'https://www.greenheck.com/products/grilles-registers-diffusers/supply-grilles',
+                  },
+                  {
+                    title: 'Return Grilles',
+                    url: 'https://www.greenheck.com/products/grilles-registers-diffusers/return-grilles',
+                  },
+                  {
+                    title: 'Linear Grilles',
+                    url: 'https://www.greenheck.com/products/grilles-registers-diffusers/linear-grilles',
+                  },
+                  {
+                    title: 'Security Grilles',
+                    url: 'https://www.greenheck.com/products/grilles-registers-diffusers/security-grilles',
+                  },
+                  {
+                    title: 'Ceiling Diffusers',
+                    url: 'https://www.greenheck.com/products/grilles-registers-diffusers/ceiling-diffusers',
+                  },
+                  {
+                    title: 'Linear Diffusers',
+                    url: 'https://www.greenheck.com/products/grilles-registers-diffusers/linear-diffusers',
+                  },
+                  {
+                    title: 'High Performance Diffusers',
+                    url: 'https://www.greenheck.com/products/grilles-registers-diffusers/high-performance-diffusers',
+                  },
+                  {
+                    title: 'Displacement Diffusers',
+                    url: 'https://www.greenheck.com/products/grilles-registers-diffusers/displacement-diffusers',
+                  },
+                  {
+                    title: 'Nozzle Diffusers',
+                    url: 'https://www.greenheck.com/products/grilles-registers-diffusers/nozzle-diffusers',
+                  },
+                  {
+                    title: 'Custom Grilles & Diffusers',
+                    url: 'https://www.greenheck.com/products/grilles-registers-diffusers/custom-grilles-diffusers',
+                  },
+                ],
               },
               {
                 title: 'Air Terminal Units',
-                icon: 'imgs/AirTerminalUnits.png',
-                submenu: {
-                  title: 'Air Terminal Units',
-                  viewAll: true,
-                  columns: [
-                    {
-                      items: [
-                        'Single Duct Terminal Units',
-                        'Fan-Powered Terminal Units',
-                        'Dual Duct Terminal Units',
-                        'Retrofit Terminal Units',
-                        'Chilled Beams',
-                      ],
-                    },
-                    {
-                      items: [
-                        'VAV Diffusers',
-                        'Terminal Unit Controls',
-                        'Sound Attenuators',
-                        'Bypass Terminal Units',
-                        'Flow Measuring Stations',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Induction Terminal Units',
-                        'Custom Terminal Units',
-                        'Terminal Unit Accessories',
-                        'Pressure Independent Control Valves',
-                      ],
-                    },
-                  ],
-                },
+                icon: 'https://chetanviamagus.github.io/HeaderTemplate/imgs/AirTerminalUnits.png',
+                url: 'https://www.greenheck.com/products/air-terminal-units',
+                items: [
+                  {
+                    title: 'Single Duct Terminal Units',
+                    url: 'https://www.greenheck.com/products/air-terminal-units/single-duct-terminal-units',
+                  },
+                  {
+                    title: 'Fan-Powered Terminal Units',
+                    url: 'https://www.greenheck.com/products/air-terminal-units/fan-powered-terminal-units',
+                  },
+                  {
+                    title: 'Dual Duct Terminal Units',
+                    url: 'https://www.greenheck.com/products/air-terminal-units/dual-duct-terminal-units',
+                  },
+                  {
+                    title: 'Retrofit Terminal Units',
+                    url: 'https://www.greenheck.com/products/air-terminal-units/retrofit-terminal-units',
+                  },
+                  {
+                    title: 'Chilled Beams',
+                    url: 'https://www.greenheck.com/products/air-terminal-units/chilled-beams',
+                  },
+                  {
+                    title: 'VAV Diffusers',
+                    url: 'https://www.greenheck.com/products/air-terminal-units/vav-diffusers',
+                  },
+                  {
+                    title: 'Terminal Unit Controls',
+                    url: 'https://www.greenheck.com/products/air-terminal-units/terminal-unit-controls',
+                  },
+                  {
+                    title: 'Sound Attenuators',
+                    url: 'https://www.greenheck.com/products/air-terminal-units/sound-attenuators',
+                  },
+                  {
+                    title: 'Bypass Terminal Units',
+                    url: 'https://www.greenheck.com/products/air-terminal-units/bypass-terminal-units',
+                  },
+                  {
+                    title: 'Flow Measuring Stations',
+                    url: 'https://www.greenheck.com/products/air-terminal-units/flow-measuring-stations',
+                  },
+                  {
+                    title: 'Induction Terminal Units',
+                    url: 'https://www.greenheck.com/products/air-terminal-units/induction-terminal-units',
+                  },
+                  {
+                    title: 'Custom Terminal Units',
+                    url: 'https://www.greenheck.com/products/air-terminal-units/custom-terminal-units',
+                  },
+                  {
+                    title: 'Terminal Unit Accessories',
+                    url: 'https://www.greenheck.com/products/air-terminal-units/terminal-unit-accessories',
+                  },
+                  {
+                    title: 'Pressure Independent Control Valves',
+                    url: 'https://www.greenheck.com/products/air-terminal-units/pressure-independent-control-valves',
+                  },
+                ],
               },
               {
                 title: 'Energy Recovery',
-                icon: 'imgs/EnergyRecovery.png',
-                submenu: {
-                  title: 'Energy Recovery',
-                  viewAll: true,
-                  columns: [
-                    {
-                      items: [
-                        'Energy Recovery Ventilators',
-                        'Enthalpy Wheels',
-                        'Fixed Plate Exchangers',
-                        'Heat Pipes',
-                        'Run-Around Loops',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Packaged Energy Recovery Units',
-                        'Indoor Energy Recovery Units',
-                        'Heat Recovery Coils',
-                        'Energy Recovery Controls',
-                        'Desiccant Dehumidification',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Energy Recovery Accessories',
-                        'Custom Energy Recovery Solutions',
-                        'High Efficiency Filtration',
-                        'Heat Recovery Chillers',
-                      ],
-                    },
-                  ],
-                },
+                icon: 'https://chetanviamagus.github.io/HeaderTemplate/imgs/EnergyRecovery.png',
+                url: 'https://www.greenheck.com/products/energy-recovery',
+                items: [
+                  {
+                    title: 'Energy Recovery Ventilators',
+                    url: 'https://www.greenheck.com/products/energy-recovery/energy-recovery-ventilators',
+                  },
+                  {
+                    title: 'Enthalpy Wheels',
+                    url: 'https://www.greenheck.com/products/energy-recovery/enthalpy-wheels',
+                  },
+                  {
+                    title: 'Fixed Plate Exchangers',
+                    url: 'https://www.greenheck.com/products/energy-recovery/fixed-plate-exchangers',
+                  },
+                  {
+                    title: 'Heat Pipes',
+                    url: 'https://www.greenheck.com/products/energy-recovery/heat-pipes',
+                  },
+                  {
+                    title: 'Run-Around Loops',
+                    url: 'https://www.greenheck.com/products/energy-recovery/run-around-loops',
+                  },
+                  {
+                    title: 'Packaged Energy Recovery Units',
+                    url: 'https://www.greenheck.com/products/energy-recovery/packaged-energy-recovery-units',
+                  },
+                  {
+                    title: 'Indoor Energy Recovery Units',
+                    url: 'https://www.greenheck.com/products/energy-recovery/indoor-energy-recovery-units',
+                  },
+                  {
+                    title: 'Heat Recovery Coils',
+                    url: 'https://www.greenheck.com/products/energy-recovery/heat-recovery-coils',
+                  },
+                  {
+                    title: 'Energy Recovery Controls',
+                    url: 'https://www.greenheck.com/products/energy-recovery/energy-recovery-controls',
+                  },
+                  {
+                    title: 'Desiccant Dehumidification',
+                    url: 'https://www.greenheck.com/products/energy-recovery/desiccant-dehumidification',
+                  },
+                  {
+                    title: 'Energy Recovery Accessories',
+                    url: 'https://www.greenheck.com/products/energy-recovery/energy-recovery-accessories',
+                  },
+                  {
+                    title: 'Custom Energy Recovery Solutions',
+                    url: 'https://www.greenheck.com/products/energy-recovery/custom-energy-recovery-solutions',
+                  },
+                  {
+                    title: 'High Efficiency Filtration',
+                    url: 'https://www.greenheck.com/products/energy-recovery/high-efficiency-filtration',
+                  },
+                  {
+                    title: 'Heat Recovery Chillers',
+                    url: 'https://www.greenheck.com/products/energy-recovery/heat-recovery-chillers',
+                  },
+                ],
               },
               {
                 title: '100% Outdoor Air',
-                icon: 'imgs/100OutdoorAir.png',
-                submenu: {
-                  title: '100% Outdoor Air',
-                  viewAll: true,
-                  columns: [
-                    {
-                      items: [
-                        'Dedicated Outdoor Air Systems (DOAS)',
-                        'Make-Up Air Units',
-                        'Packaged Outdoor Air Systems',
-                        'High Efficiency Filtration',
-                        'Outdoor Air Preconditioning',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Variable Air Volume Systems',
-                        'Single Zone Systems',
-                        'Constant Volume Systems',
-                        'Indirect/Direct Evaporative Cooling',
-                        'Dehumidification Systems',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Indoor Air Quality Monitors',
-                        'Fresh Air Controls',
-                        'Outdoor Air Measurement',
-                        'Custom Outdoor Air Systems',
-                        'Ventilation Rate Procedures',
-                      ],
-                    },
-                  ],
-                },
+                icon: 'https://chetanviamagus.github.io/HeaderTemplate/imgs/100OutdoorAir.png',
+                url: 'https://www.greenheck.com/products/100-outdoor-air',
+                items: [
+                  {
+                    title: 'Dedicated Outdoor Air Systems (DOAS)',
+                    url: 'https://www.greenheck.com/products/100-outdoor-air/dedicated-outdoor-air-systems',
+                  },
+                  {
+                    title: 'Make-Up Air Units',
+                    url: 'https://www.greenheck.com/products/100-outdoor-air/make-up-air-units',
+                  },
+                  {
+                    title: 'Packaged Outdoor Air Systems',
+                    url: 'https://www.greenheck.com/products/100-outdoor-air/packaged-outdoor-air-systems',
+                  },
+                  {
+                    title: 'High Efficiency Filtration',
+                    url: 'https://www.greenheck.com/products/100-outdoor-air/high-efficiency-filtration',
+                  },
+                  {
+                    title: 'Outdoor Air Preconditioning',
+                    url: 'https://www.greenheck.com/products/100-outdoor-air/outdoor-air-preconditioning',
+                  },
+                  {
+                    title: 'Variable Air Volume Systems',
+                    url: 'https://www.greenheck.com/products/100-outdoor-air/variable-air-volume-systems',
+                  },
+                  {
+                    title: 'Single Zone Systems',
+                    url: 'https://www.greenheck.com/products/100-outdoor-air/single-zone-systems',
+                  },
+                  {
+                    title: 'Constant Volume Systems',
+                    url: 'https://www.greenheck.com/products/100-outdoor-air/constant-volume-systems',
+                  },
+                  {
+                    title: 'Indirect/Direct Evaporative Cooling',
+                    url: 'https://www.greenheck.com/products/100-outdoor-air/indirect-direct-evaporative-cooling',
+                  },
+                  {
+                    title: 'Dehumidification Systems',
+                    url: 'https://www.greenheck.com/products/100-outdoor-air/dehumidification-systems',
+                  },
+                  {
+                    title: 'Indoor Air Quality Monitors',
+                    url: 'https://www.greenheck.com/products/100-outdoor-air/indoor-air-quality-monitors',
+                  },
+                  {
+                    title: 'Fresh Air Controls',
+                    url: 'https://www.greenheck.com/products/100-outdoor-air/fresh-air-controls',
+                  },
+                  {
+                    title: 'Outdoor Air Measurement',
+                    url: 'https://www.greenheck.com/products/100-outdoor-air/outdoor-air-measurement',
+                  },
+                  {
+                    title: 'Custom Outdoor Air Systems',
+                    url: 'https://www.greenheck.com/products/100-outdoor-air/custom-outdoor-air-systems',
+                  },
+                  {
+                    title: 'Ventilation Rate Procedures',
+                    url: 'https://www.greenheck.com/products/100-outdoor-air/ventilation-rate-procedures',
+                  },
+                ],
               },
               {
                 title: 'Rooftop Units',
-                icon: 'imgs/RooftopUnits.png',
-                submenu: {
-                  title: 'Rooftop Units',
-                  viewAll: true,
-                  columns: [
-                    {
-                      items: [
-                        'Packaged Rooftop Units',
-                        'Split System Rooftop Units',
-                        'VAV Rooftop Units',
-                        'Single Zone Rooftop Units',
-                        'High Efficiency Rooftop Units',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Heat Pump Rooftop Units',
-                        'Gas/Electric Rooftop Units',
-                        'Electric/Electric Rooftop Units',
-                        'Makeup Air Rooftop Units',
-                        'Custom Rooftop Units',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Rooftop Unit Controls',
-                        'Rooftop Unit Accessories',
-                        'Rooftop Unit Curbs',
-                        'Economizer Packages',
-                        'Rooftop Unit Service',
-                      ],
-                    },
-                  ],
-                },
+                icon: 'https://chetanviamagus.github.io/HeaderTemplate/imgs/RooftopUnits.png',
+                url: 'https://www.greenheck.com/products/rooftop-units',
+                items: [
+                  {
+                    title: 'Packaged Rooftop Units',
+                    url: 'https://www.greenheck.com/products/rooftop-units/packaged-rooftop-units',
+                  },
+                  {
+                    title: 'Split System Rooftop Units',
+                    url: 'https://www.greenheck.com/products/rooftop-units/split-system-rooftop-units',
+                  },
+                  {
+                    title: 'VAV Rooftop Units',
+                    url: 'https://www.greenheck.com/products/rooftop-units/vav-rooftop-units',
+                  },
+                  {
+                    title: 'Single Zone Rooftop Units',
+                    url: 'https://www.greenheck.com/products/rooftop-units/single-zone-rooftop-units',
+                  },
+                  {
+                    title: 'High Efficiency Rooftop Units',
+                    url: 'https://www.greenheck.com/products/rooftop-units/high-efficiency-rooftop-units',
+                  },
+                  {
+                    title: 'Heat Pump Rooftop Units',
+                    url: 'https://www.greenheck.com/products/rooftop-units/heat-pump-rooftop-units',
+                  },
+                  {
+                    title: 'Gas/Electric Rooftop Units',
+                    url: 'https://www.greenheck.com/products/rooftop-units/gas-electric-rooftop-units',
+                  },
+                  {
+                    title: 'Electric/Electric Rooftop Units',
+                    url: 'https://www.greenheck.com/products/rooftop-units/electric-electric-rooftop-units',
+                  },
+                  {
+                    title: 'Makeup Air Rooftop Units',
+                    url: 'https://www.greenheck.com/products/rooftop-units/makeup-air-rooftop-units',
+                  },
+                  {
+                    title: 'Custom Rooftop Units',
+                    url: 'https://www.greenheck.com/products/rooftop-units/custom-rooftop-units',
+                  },
+                  {
+                    title: 'Rooftop Unit Controls',
+                    url: 'https://www.greenheck.com/products/rooftop-units/rooftop-unit-controls',
+                  },
+                  {
+                    title: 'Rooftop Unit Accessories',
+                    url: 'https://www.greenheck.com/products/rooftop-units/rooftop-unit-accessories',
+                  },
+                  {
+                    title: 'Rooftop Unit Curbs',
+                    url: 'https://www.greenheck.com/products/rooftop-units/rooftop-unit-curbs',
+                  },
+                  {
+                    title: 'Economizer Packages',
+                    url: 'https://www.greenheck.com/products/rooftop-units/economizer-packages',
+                  },
+                  {
+                    title: 'Rooftop Unit Service',
+                    url: 'https://www.greenheck.com/products/rooftop-units/rooftop-unit-service',
+                  },
+                ],
               },
               {
                 title: 'Tampered Ventilation',
-                icon: 'imgs/TamperedVentilation.png',
-                submenu: {
-                  title: 'Tempered Ventilation',
-                  viewAll: true,
-                  columns: [
-                    {
-                      items: [
-                        'Direct-Fired Makeup Air Units',
-                        'Indirect-Fired Makeup Air Units',
-                        'Gas-Fired Heating Units',
-                        'Electric Heating Units',
-                        'Hot Water Heating Units',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Steam Heating Units',
-                        'Cooling Coils',
-                        'Recirculation Units',
-                        'Variable Volume Units',
-                        'Packaged DX Units',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Heat Recovery Units',
-                        'Filtered Supply Units',
-                        'Ventilation Controls',
-                        'Custom Tempered Ventilation',
-                        'Kitchen Ventilation Systems',
-                      ],
-                    },
-                  ],
-                },
+                icon: 'https://chetanviamagus.github.io/HeaderTemplate/imgs/TamperedVentilation.png',
+                url: 'https://www.greenheck.com/products/tampered-ventilation',
+                items: [
+                  {
+                    title: 'Direct-Fired Makeup Air Units',
+                    url: 'https://www.greenheck.com/products/tampered-ventilation/direct-fired-makeup-air-units',
+                  },
+                  {
+                    title: 'Indirect-Fired Makeup Air Units',
+                    url: 'https://www.greenheck.com/products/tampered-ventilation/indirect-fired-makeup-air-units',
+                  },
+                  {
+                    title: 'Gas-Fired Heating Units',
+                    url: 'https://www.greenheck.com/products/tampered-ventilation/gas-fired-heating-units',
+                  },
+                  {
+                    title: 'Electric Heating Units',
+                    url: 'https://www.greenheck.com/products/tampered-ventilation/electric-heating-units',
+                  },
+                  {
+                    title: 'Hot Water Heating Units',
+                    url: 'https://www.greenheck.com/products/tampered-ventilation/hot-water-heating-units',
+                  },
+                  {
+                    title: 'Steam Heating Units',
+                    url: 'https://www.greenheck.com/products/tampered-ventilation/steam-heating-units',
+                  },
+                  {
+                    title: 'Cooling Coils',
+                    url: 'https://www.greenheck.com/products/tampered-ventilation/cooling-coils',
+                  },
+                  {
+                    title: 'Recirculation Units',
+                    url: 'https://www.greenheck.com/products/tampered-ventilation/recirculation-units',
+                  },
+                  {
+                    title: 'Variable Volume Units',
+                    url: 'https://www.greenheck.com/products/tampered-ventilation/variable-volume-units',
+                  },
+                  {
+                    title: 'Packaged DX Units',
+                    url: 'https://www.greenheck.com/products/tampered-ventilation/packaged-dx-units',
+                  },
+                  {
+                    title: 'Heat Recovery Units',
+                    url: 'https://www.greenheck.com/products/tampered-ventilation/heat-recovery-units',
+                  },
+                  {
+                    title: 'Filtered Supply Units',
+                    url: 'https://www.greenheck.com/products/tampered-ventilation/filtered-supply-units',
+                  },
+                  {
+                    title: 'Ventilation Controls',
+                    url: 'https://www.greenheck.com/products/tampered-ventilation/ventilation-controls',
+                  },
+                  {
+                    title: 'Custom Tempered Ventilation',
+                    url: 'https://www.greenheck.com/products/tampered-ventilation/custom-tempered-ventilation',
+                  },
+                  {
+                    title: 'Kitchen Ventilation Systems',
+                    url: 'https://www.greenheck.com/products/tampered-ventilation/kitchen-ventilation-systems',
+                  },
+                ],
               },
               {
                 title: 'Space Heating',
-                icon: 'imgs/SpaceHeating.png',
-                submenu: {
-                  title: 'Space Heating',
-                  viewAll: true,
-                  columns: [
-                    {
-                      items: [
-                        'Unit Heaters',
-                        'Cabinet Unit Heaters',
-                        'Duct Furnaces',
-                        'Infrared Heaters',
-                        'Door Heaters',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Air Curtains',
-                        'Radiant Heating',
-                        'Electric Heaters',
-                        'Gas-Fired Heaters',
-                        'Hot Water Heaters',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Steam Heaters',
-                        'Heat Pumps',
-                        'Custom Heating Solutions',
-                        'Heating Controls',
-                        'Heating Accessories',
-                      ],
-                    },
-                  ],
-                },
+                icon: 'https://chetanviamagus.github.io/HeaderTemplate/imgs/SpaceHeating.png',
+                url: 'https://www.greenheck.com/products/space-heating',
+                items: [
+                  {
+                    title: 'Unit Heaters',
+                    url: 'https://www.greenheck.com/products/space-heating/unit-heaters',
+                  },
+                  {
+                    title: 'Cabinet Unit Heaters',
+                    url: 'https://www.greenheck.com/products/space-heating/cabinet-unit-heaters',
+                  },
+                  {
+                    title: 'Duct Furnaces',
+                    url: 'https://www.greenheck.com/products/space-heating/duct-furnaces',
+                  },
+                  {
+                    title: 'Infrared Heaters',
+                    url: 'https://www.greenheck.com/products/space-heating/infrared-heaters',
+                  },
+                  {
+                    title: 'Door Heaters',
+                    url: 'https://www.greenheck.com/products/space-heating/door-heaters',
+                  },
+                  {
+                    title: 'Air Curtains',
+                    url: 'https://www.greenheck.com/products/space-heating/air-curtains',
+                  },
+                  {
+                    title: 'Radiant Heating',
+                    url: 'https://www.greenheck.com/products/space-heating/radiant-heating',
+                  },
+                  {
+                    title: 'Electric Heaters',
+                    url: 'https://www.greenheck.com/products/space-heating/electric-heaters',
+                  },
+                  {
+                    title: 'Gas-Fired Heaters',
+                    url: 'https://www.greenheck.com/products/space-heating/gas-fired-heaters',
+                  },
+                  {
+                    title: 'Hot Water Heaters',
+                    url: 'https://www.greenheck.com/products/space-heating/hot-water-heaters',
+                  },
+                  {
+                    title: 'Steam Heaters',
+                    url: 'https://www.greenheck.com/products/space-heating/steam-heaters',
+                  },
+                  {
+                    title: 'Heat Pumps',
+                    url: 'https://www.greenheck.com/products/space-heating/heat-pumps',
+                  },
+                  {
+                    title: 'Custom Heating Solutions',
+                    url: 'https://www.greenheck.com/products/space-heating/custom-heating-solutions',
+                  },
+                  {
+                    title: 'Heating Controls',
+                    url: 'https://www.greenheck.com/products/space-heating/heating-controls',
+                  },
+                  {
+                    title: 'Heating Accessories',
+                    url: 'https://www.greenheck.com/products/space-heating/heating-accessories',
+                  },
+                ],
               },
               {
                 title: 'Airflow Measurement',
-                icon: 'imgs/AirflowMeasurement.png',
-                submenu: {
-                  title: 'Airflow Measurement',
-                  viewAll: true,
-                  columns: [
-                    {
-                      items: [
-                        'Airflow Measuring Stations',
-                        'Thermal Dispersion Sensors',
-                        'Vortex Shedding Sensors',
-                        'Hot Wire Anemometers',
-                        'Pitot Arrays',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Differential Pressure Sensors',
-                        'Outdoor Airflow Measurement',
-                        'Indoor Airflow Measurement',
-                        'Duct Mounted Airflow Sensors',
-                        'Fan Inlet Sensors',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Damper Mounted Airflow Sensors',
-                        'Terminal Unit Sensors',
-                        'Airflow Measurement Controls',
-                        'Calibration Services',
-                        'Custom Measurement Solutions',
-                      ],
-                    },
-                  ],
-                },
+                icon: 'https://chetanviamagus.github.io/HeaderTemplate/imgs/AirflowMeasurement.png',
+                url: 'https://www.greenheck.com/products/airflow-measurement',
+                items: [
+                  {
+                    title: 'Airflow Measuring Stations',
+                    url: 'https://www.greenheck.com/products/airflow-measurement/airflow-measuring-stations',
+                  },
+                  {
+                    title: 'Thermal Dispersion Sensors',
+                    url: 'https://www.greenheck.com/products/airflow-measurement/thermal-dispersion-sensors',
+                  },
+                  {
+                    title: 'Vortex Shedding Sensors',
+                    url: 'https://www.greenheck.com/products/airflow-measurement/vortex-shedding-sensors',
+                  },
+                  {
+                    title: 'Hot Wire Anemometers',
+                    url: 'https://www.greenheck.com/products/airflow-measurement/hot-wire-anemometers',
+                  },
+                  {
+                    title: 'Pitot Arrays',
+                    url: 'https://www.greenheck.com/products/airflow-measurement/pitot-arrays',
+                  },
+                  {
+                    title: 'Differential Pressure Sensors',
+                    url: 'https://www.greenheck.com/products/airflow-measurement/differential-pressure-sensors',
+                  },
+                  {
+                    title: 'Outdoor Airflow Measurement',
+                    url: 'https://www.greenheck.com/products/airflow-measurement/outdoor-airflow-measurement',
+                  },
+                  {
+                    title: 'Indoor Airflow Measurement',
+                    url: 'https://www.greenheck.com/products/airflow-measurement/indoor-airflow-measurement',
+                  },
+                  {
+                    title: 'Duct Mounted Airflow Sensors',
+                    url: 'https://www.greenheck.com/products/airflow-measurement/duct-mounted-airflow-sensors',
+                  },
+                  {
+                    title: 'Fan Inlet Sensors',
+                    url: 'https://www.greenheck.com/products/airflow-measurement/fan-inlet-sensors',
+                  },
+                  {
+                    title: 'Damper Mounted Airflow Sensors',
+                    url: 'https://www.greenheck.com/products/airflow-measurement/damper-mounted-airflow-sensors',
+                  },
+                  {
+                    title: 'Terminal Unit Sensors',
+                    url: 'https://www.greenheck.com/products/airflow-measurement/terminal-unit-sensors',
+                  },
+                  {
+                    title: 'Airflow Measurement Controls',
+                    url: 'https://www.greenheck.com/products/airflow-measurement/airflow-measurement-controls',
+                  },
+                  {
+                    title: 'Calibration Services',
+                    url: 'https://www.greenheck.com/products/airflow-measurement/calibration-services',
+                  },
+                  {
+                    title: 'Custom Measurement Solutions',
+                    url: 'https://www.greenheck.com/products/airflow-measurement/custom-measurement-solutions',
+                  },
+                ],
               },
               {
                 title: 'Healthcare, Laboratories & Cleanrooms',
-                icon: 'imgs/HealthcareLaboratoriesCleanrooms.png',
-                submenu: {
-                  title: 'Healthcare, Laboratories & Cleanrooms',
-                  viewAll: true,
-                  columns: [
-                    {
-                      items: [
-                        'Isolation Room Systems',
-                        'Operating Room Systems',
-                        'Laboratory Exhaust Systems',
-                        'Fume Hood Controls',
-                        'Cleanroom Systems',
-                      ],
-                    },
-                    {
-                      items: [
-                        'HEPA Filtration Units',
-                        'Laminar Flow Systems',
-                        'Pressurization Controls',
-                        'Air Quality Monitoring',
-                        'Room Pressure Monitors',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Biological Safety Solutions',
-                        'Pharmaceutical Applications',
-                        'Critical Environment Controls',
-                        'Containment Systems',
-                        'Custom Healthcare Solutions',
-                      ],
-                    },
-                  ],
-                },
+                icon: 'https://chetanviamagus.github.io/HeaderTemplate/imgs/HealthcareLaboratoriesCleanrooms.png',
+                url: 'https://www.greenheck.com/products/healthcare-laboratories-cleanrooms',
+                items: [
+                  {
+                    title: 'Isolation Room Systems',
+                    url: 'https://www.greenheck.com/products/healthcare-laboratories-cleanrooms/isolation-room-systems',
+                  },
+                  {
+                    title: 'Operating Room Systems',
+                    url: 'https://www.greenheck.com/products/healthcare-laboratories-cleanrooms/operating-room-systems',
+                  },
+                  {
+                    title: 'Laboratory Exhaust Systems',
+                    url: 'https://www.greenheck.com/products/healthcare-laboratories-cleanrooms/laboratory-exhaust-systems',
+                  },
+                  {
+                    title: 'Fume Hood Controls',
+                    url: 'https://www.greenheck.com/products/healthcare-laboratories-cleanrooms/fume-hood-controls',
+                  },
+                  {
+                    title: 'Cleanroom Systems',
+                    url: 'https://www.greenheck.com/products/healthcare-laboratories-cleanrooms/cleanroom-systems',
+                  },
+                  {
+                    title: 'HEPA Filtration Units',
+                    url: 'https://www.greenheck.com/products/healthcare-laboratories-cleanrooms/hepa-filtration-units',
+                  },
+                  {
+                    title: 'Laminar Flow Systems',
+                    url: 'https://www.greenheck.com/products/healthcare-laboratories-cleanrooms/laminar-flow-systems',
+                  },
+                  {
+                    title: 'Pressurization Controls',
+                    url: 'https://www.greenheck.com/products/healthcare-laboratories-cleanrooms/pressurization-controls',
+                  },
+                  {
+                    title: 'Air Quality Monitoring',
+                    url: 'https://www.greenheck.com/products/healthcare-laboratories-cleanrooms/air-quality-monitoring',
+                  },
+                  {
+                    title: 'Room Pressure Monitors',
+                    url: 'https://www.greenheck.com/products/healthcare-laboratories-cleanrooms/room-pressure-monitors',
+                  },
+                  {
+                    title: 'Biological Safety Solutions',
+                    url: 'https://www.greenheck.com/products/healthcare-laboratories-cleanrooms/biological-safety-solutions',
+                  },
+                  {
+                    title: 'Pharmaceutical Applications',
+                    url: 'https://www.greenheck.com/products/healthcare-laboratories-cleanrooms/pharmaceutical-applications',
+                  },
+                  {
+                    title: 'Critical Environment Controls',
+                    url: 'https://www.greenheck.com/products/healthcare-laboratories-cleanrooms/critical-environment-controls',
+                  },
+                  {
+                    title: 'Containment Systems',
+                    url: 'https://www.greenheck.com/products/healthcare-laboratories-cleanrooms/containment-systems',
+                  },
+                  {
+                    title: 'Custom Healthcare Solutions',
+                    url: 'https://www.greenheck.com/products/healthcare-laboratories-cleanrooms/custom-healthcare-solutions',
+                  },
+                ],
               },
               {
                 title: 'Accessories & Complimentary Products',
-                icon: 'imgs/AccessoriesComplimentaryProducts.png',
-                submenu: {
-                  title: 'Accessories & Complimentary Products',
-                  viewAll: true,
-                  columns: [
-                    {
-                      items: [
-                        'Roof Curbs',
-                        'Isolation Bases',
-                        'Gravity Ventilators',
-                        'Mounting Systems',
-                        'Weather Hoods',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Filters & Filter Housings',
-                        'Silencers & Sound Attenuators',
-                        'Backdraft Dampers',
-                        'Control Dampers',
-                        'Vibration Isolation',
-                      ],
-                    },
-                    {
-                      items: [
-                        'Duct Accessories',
-                        'Flex Connectors',
-                        'Control Systems',
-                        'Sensors & Monitoring',
-                        'Installation Hardware',
-                      ],
-                    },
-                  ],
-                },
+                icon: 'https://chetanviamagus.github.io/HeaderTemplate/imgs/AccessoriesComplimentaryProducts.png',
+                url: 'https://www.greenheck.com/products/accessories-complimentary-products',
+                items: [
+                  {
+                    title: 'Roof Curbs',
+                    url: 'https://www.greenheck.com/products/accessories-complimentary-products/roof-curbs',
+                  },
+                  {
+                    title: 'Isolation Bases',
+                    url: 'https://www.greenheck.com/products/accessories-complimentary-products/isolation-bases',
+                  },
+                  {
+                    title: 'Gravity Ventilators',
+                    url: 'https://www.greenheck.com/products/accessories-complimentary-products/gravity-ventilators',
+                  },
+                  {
+                    title: 'Mounting Systems',
+                    url: 'https://www.greenheck.com/products/accessories-complimentary-products/mounting-systems',
+                  },
+                  {
+                    title: 'Weather Hoods',
+                    url: 'https://www.greenheck.com/products/accessories-complimentary-products/weather-hoods',
+                  },
+                  {
+                    title: 'Filters & Filter Housings',
+                    url: 'https://www.greenheck.com/products/accessories-complimentary-products/filters-filter-housings',
+                  },
+                  {
+                    title: 'Silencers & Sound Attenuators',
+                    url: 'https://www.greenheck.com/products/accessories-complimentary-products/silencers-sound-attenuators',
+                  },
+                  {
+                    title: 'Backdraft Dampers',
+                    url: 'https://www.greenheck.com/products/accessories-complimentary-products/backdraft-dampers',
+                  },
+                  {
+                    title: 'Control Dampers',
+                    url: 'https://www.greenheck.com/products/accessories-complimentary-products/control-dampers',
+                  },
+                  {
+                    title: 'Vibration Isolation',
+                    url: 'https://www.greenheck.com/products/accessories-complimentary-products/vibration-isolation',
+                  },
+                  {
+                    title: 'Duct Accessories',
+                    url: 'https://www.greenheck.com/products/accessories-complimentary-products/duct-accessories',
+                  },
+                  {
+                    title: 'Flex Connectors',
+                    url: 'https://www.greenheck.com/products/accessories-complimentary-products/flex-connectors',
+                  },
+                  {
+                    title: 'Control Systems',
+                    url: 'https://www.greenheck.com/products/accessories-complimentary-products/control-systems',
+                  },
+                  {
+                    title: 'Sensors & Monitoring',
+                    url: 'https://www.greenheck.com/products/accessories-complimentary-products/sensors-monitoring',
+                  },
+                  {
+                    title: 'Installation Hardware',
+                    url: 'https://www.greenheck.com/products/accessories-complimentary-products/installation-hardware',
+                  },
+                ],
               },
             ],
           },
           {
             title: 'Building Type',
-            type: 'dropdown',
             layout: 'standard',
             items: [
-              { title: 'K-12 School', row: 1 },
-              { title: 'Higher Education', row: 1 },
-              { title: 'Multi-Family', row: 1 },
-              { title: 'Healthcare Facility', row: 2 },
-              { title: 'Manufacturing', row: 2 },
-              { title: 'Laboratory', row: 2 },
+              { title: 'K-12 School', url: 'https://www.greenheck.com/building-type/k-12-school' },
+              {
+                title: 'Higher Education',
+                url: 'https://www.greenheck.com/building-type/higher-education',
+              },
+              {
+                title: 'Multi-Family',
+                url: 'https://www.greenheck.com/building-type/multi-family',
+              },
+              {
+                title: 'Healthcare Facility',
+                url: 'https://www.greenheck.com/building-type/healthcare-facility',
+              },
+              {
+                title: 'Manufacturing',
+                url: 'https://www.greenheck.com/building-type/manufacturing',
+              },
+              { title: 'Laboratory', url: 'https://www.greenheck.com/building-type/laboratory' },
             ],
           },
           {
             title: 'Resources',
-            type: 'dropdown',
             layout: 'standard',
             items: [
-              { title: 'Resource Library', row: 1 },
-              { title: 'Catalogs', row: 1 },
-              { title: 'Specifications', row: 1 },
-              { title: 'Videos', row: 2 },
-              { title: 'Installation Manuals', row: 2 },
-              { title: 'Application Articles', row: 2 },
-              { title: 'Blog', row: 3 },
-              { title: 'Case Studies', row: 3 },
-              { title: 'Software', row: 3 },
+              {
+                title: 'Resource Library',
+                url: 'https://www.greenheck.com/resources/resource-library',
+              },
+              { title: 'Catalogs', url: 'https://www.greenheck.com/resources/catalogs' },
+              {
+                title: 'Specifications',
+                url: 'https://www.greenheck.com/resources/specifications',
+              },
+              { title: 'Videos', url: 'https://www.greenheck.com/resources/videos' },
+              {
+                title: 'Installation Manuals',
+                url: 'https://www.greenheck.com/resources/installation-manuals',
+              },
+              {
+                title: 'Application Articles',
+                url: 'https://www.greenheck.com/resources/application-articles',
+              },
+              { title: 'Blog', url: 'https://www.greenheck.com/resources/blog' },
+              { title: 'Case Studies', url: 'https://www.greenheck.com/resources/case-studies' },
+              { title: 'Software', url: 'https://www.greenheck.com/resources/software' },
             ],
           },
           {
             title: 'Education',
-            type: 'dropdown',
             layout: 'standard',
             items: [
-              { title: 'HVAC University', row: 1 },
-              { title: 'Online Training', row: 1 },
+              {
+                title: 'HVAC University',
+                url: 'https://www.greenheck.com/education/hvac-university',
+              },
+              {
+                title: 'Online Training',
+                url: 'https://www.greenheck.com/education/online-training',
+              },
             ],
           },
           {
             title: 'Support',
-            type: 'dropdown',
             layout: 'standard',
             items: [
-              { title: 'Pre-Construction', row: 1 },
-              { title: 'Post-Construction', row: 1 },
-              { title: 'Contact Us', row: 1 },
+              {
+                title: 'Pre-Construction',
+                url: 'https://www.greenheck.com/support/pre-construction',
+              },
+              {
+                title: 'Post-Construction',
+                url: 'https://www.greenheck.com/support/post-construction',
+              },
+              { title: 'Contact Us', url: 'https://www.greenheck.com/support/contact-us' },
             ],
           },
         ],
@@ -1212,7 +2135,7 @@
           link.textContent = item.title;
           li.appendChild(link);
 
-          if (item.type === 'megamenu' || item.type === 'dropdown') {
+          if (item.layout === 'mega' || item.layout === 'standard') {
             const dropdownMenu =
               item.layout === 'mega'
                 ? this.createMegaMenu(item)
@@ -1247,12 +2170,12 @@
           // Create rows
           Object.keys(rows).forEach(rowNum => {
             const rowDiv = document.createElement('div');
-            rowDiv.className = 'dropdown-row';
+            rowDiv.className = 'submenu-items-grid';
 
             rows[rowNum].forEach(menuItem => {
               const link = document.createElement('a');
               link.href = '#';
-              link.className = 'dropdown-item standard-item';
+              link.className = 'standard-item';
               link.textContent = menuItem.title;
               rowDiv.appendChild(link);
             });
@@ -1283,9 +2206,8 @@
               grid.appendChild(productLink);
 
               // Create the submenu and append it directly to the dropdown
-              if (product.submenu) {
+              if (product.items) {
                 const submenu = this.createSubmenu(product);
-                // Append submenu directly to dropdown instead of grid
                 dropdownMenu.appendChild(submenu);
               }
             });
@@ -1300,7 +2222,7 @@
           const link = document.createElement('a');
           link.href = '#';
           link.className = 'dropdown-item';
-          if (product.submenu) {
+          if (product.items) {
             // Create a unique identifier for each submenu based on product title
             const submenuId = `submenu-${product.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
             link.setAttribute('data-submenu-trigger', '');
@@ -1323,43 +2245,33 @@
 
         createSubmenu(product) {
           const submenu = document.createElement('div');
-          // Add a unique ID based on product title
           submenu.id = `submenu-${product.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
           submenu.className = 'submenu';
 
           const content = document.createElement('div');
           content.className = 'submenu-content';
 
-          const header = this.createSubmenuHeader(product.submenu);
+          const header = this.createSubmenuHeader(product);
           content.appendChild(header);
 
-          if (product.submenu.columns) {
-            const grid = document.createElement('div');
-            grid.className = 'submenu-grid';
-
-            product.submenu.columns.forEach(column => {
-              const columnDiv = document.createElement('div');
-              columnDiv.className = 'submenu-column';
-
-              column.items.forEach(item => {
-                const link = document.createElement('a');
-                link.href = '#';
-                link.className = 'submenu-item';
-                link.textContent = item;
-                columnDiv.appendChild(link);
-              });
-
-              grid.appendChild(columnDiv);
+          if (product.items) {
+            const itemsContainer = document.createElement('div');
+            itemsContainer.className = 'submenu-items-grid';
+            product.items.forEach(item => {
+              const link = document.createElement('a');
+              link.href = item.url;
+              link.className = 'submenu-item';
+              link.textContent = item.title;
+              itemsContainer.appendChild(link);
             });
-
-            content.appendChild(grid);
+            content.appendChild(itemsContainer);
           }
 
           submenu.appendChild(content);
           return submenu;
         }
 
-        createSubmenuHeader(submenu) {
+        createSubmenuHeader(product) {
           const header = document.createElement('div');
           header.className = 'submenu-header';
 
@@ -1386,15 +2298,17 @@
 
           const title = document.createElement('h2');
           title.className = 'submenu-title';
-          title.textContent = submenu.title;
-
-          const viewAllLink = document.createElement('a');
-          viewAllLink.href = '#';
-          viewAllLink.className = 'submenu-item';
-          viewAllLink.textContent = 'View All';
+          title.textContent = product.title;
 
           headerBottom.appendChild(title);
-          if (submenu.viewAll) {
+
+          // Use product.url for View All link if present
+          if (product.url) {
+            const viewAllLink = document.createElement('a');
+            viewAllLink.href = product.url;
+            viewAllLink.className = 'submenu-view-all-link';
+            viewAllLink.textContent = 'View All';
+            viewAllLink.style.marginLeft = 'auto';
             headerBottom.appendChild(viewAllLink);
           }
 
@@ -1424,50 +2338,6 @@
           return dropdownMenu;
         }
       }
-
-      // Add new styles for standard dropdown
-      const styleSheet = document.createElement('style');
-      styleSheet.textContent = `
-      .standard-dropdown {
-        min-width: 600px;
-        padding: 24px;
-      }
-
-      .dropdown-header {
-        color: var(--color-black);
-        font-family: var(--font-family-base);
-        font-size: 22px;
-        margin-bottom: 20px;
-      }
-
-      .standard-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .dropdown-row {
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-      }
-
-      .standard-item {
-        color: var(--color-gray);
-        text-decoration: none;
-        font-family: var(--font-family-base);
-        font-size: var(--font-size-base);
-        transition: var(--transition-base);
-        padding: 8px 16px;
-        border-radius: 4px;
-      }
-
-      .standard-item:hover {
-        color: var(--color-primary);
-        background-color: rgba(7, 86, 151, 0.05);
-      }
-    `;
-      document.head.appendChild(styleSheet);
 
       // MenuState and MenuManager classes
       class MenuState {
@@ -1879,6 +2749,169 @@
 
         new MenuManager();
       });
+
+      (function () {
+        const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        const mobileNavList = document.getElementById('mobile-nav-list');
+        const mobileNavHeaderContainer = document.getElementById('mobile-nav-header-container');
+        const mobileNavHeadingContainer = document.getElementById('mobile-nav-heading-container');
+        let navStack = [];
+
+        function buildMobileNavList(items, parentTitle = null, parentUrl = null, heading = null) {
+          mobileNavList.innerHTML = '';
+          mobileNavHeaderContainer.innerHTML = '';
+          mobileNavHeadingContainer.innerHTML = '';
+          // Submenu header row logic
+          if (navStack.length > 1) {
+            const current = navStack[navStack.length - 1];
+            const subheader = document.createElement('div');
+            subheader.className = 'mobile-nav-subheader-row';
+            // Back button
+            const backBtn = document.createElement('button');
+            backBtn.className = 'mobile-nav-back';
+            backBtn.innerHTML = '<span class="material-symbols-outlined">arrow_back</span>';
+            backBtn.onclick = e => {
+              e.stopPropagation();
+              if (navStack.length > 1) {
+                debugger;
+                navStack.pop();
+                console.log(
+                  'Back arrow clicked, navStack after pop:',
+                  JSON.parse(JSON.stringify(navStack))
+                );
+                const prev = navStack[navStack.length - 1];
+                buildMobileNavList(prev.items, prev.parentTitle, prev.parentUrl, prev.heading);
+              }
+            };
+            subheader.appendChild(backBtn);
+            // Title
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'mobile-nav-title';
+            titleSpan.textContent = current.parentTitle || 'Main Menu';
+            subheader.appendChild(titleSpan);
+            // View All link (if parentUrl)
+            if (current.parentUrl) {
+              const viewAll = document.createElement('a');
+              viewAll.className = 'mobile-nav-viewall';
+              viewAll.textContent = 'View All';
+              viewAll.href = current.parentUrl;
+              viewAll.onclick = e => {
+                e.stopPropagation();
+              };
+              subheader.appendChild(viewAll);
+            }
+            // Spacer for flex alignment if no View All
+            if (!current.parentUrl) {
+              const spacer = document.createElement('span');
+              spacer.style.flex = '1';
+              subheader.appendChild(spacer);
+            }
+            // Close button
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'mobile-nav-close';
+            closeBtn.setAttribute('aria-label', 'Close menu');
+            closeBtn.innerHTML = '<span class="material-symbols-outlined">close</span>';
+            closeBtn.onclick = e => {
+              e.stopPropagation();
+              closeMobileNav();
+            };
+            subheader.appendChild(closeBtn);
+            mobileNavHeaderContainer.appendChild(subheader);
+          } else {
+            // Main menu header row ("Close" text + X)
+            const closeRow = document.createElement('div');
+            closeRow.className = 'mobile-nav-close-row';
+            const closeText = document.createElement('span');
+            closeText.className = 'mobile-nav-close-text';
+            closeText.textContent = 'Close';
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'mobile-nav-close';
+            closeBtn.setAttribute('aria-label', 'Close menu');
+            closeBtn.innerHTML = '<span class="material-symbols-outlined">close</span>';
+            closeBtn.onclick = e => {
+              e.stopPropagation();
+              closeMobileNav();
+            };
+            closeRow.appendChild(closeText);
+            closeRow.appendChild(closeBtn);
+            mobileNavHeaderContainer.appendChild(closeRow);
+          }
+          // Heading (if present)
+          if (heading) {
+            const headingEl = document.createElement('div');
+            headingEl.className = 'mobile-nav-heading';
+            headingEl.textContent = heading;
+            mobileNavHeadingContainer.appendChild(headingEl);
+          }
+          // Render items
+          items.forEach((item, idx) => {
+            const li = document.createElement('li');
+            li.className = 'mobile-nav-item';
+            const hasChildren = Array.isArray(item.items) && item.items.length > 0;
+            const btn = document.createElement('button');
+            btn.className = 'mobile-nav-link';
+            btn.innerHTML =
+              (item.icon ? `<img src="${item.icon}" alt="" />` : '') +
+              `<span>${item.title}</span>` +
+              (hasChildren || item.url
+                ? '<span class="mobile-nav-arrow material-symbols-outlined">chevron_right</span>'
+                : '');
+            btn.onclick = e => {
+              e.stopPropagation();
+              if (hasChildren) {
+                navStack.push({
+                  items: item.items,
+                  parentTitle: heading || 'Main Menu',
+                  parentUrl: item.url,
+                  heading: item.title,
+                });
+                console.log(
+                  'Submenu clicked, navStack after push:',
+                  JSON.parse(JSON.stringify(navStack))
+                );
+                buildMobileNavList(item.items, item.title, item.url, item.title);
+              } else if (item.url) {
+                window.location.href = item.url;
+              }
+            };
+            li.appendChild(btn);
+            mobileNavList.appendChild(li);
+          });
+        }
+
+        function openMobileNav() {
+          mobileNav.classList.add('open');
+          document.body.style.overflow = 'hidden';
+          navStack = [
+            { items: navigationData.mainNav, parentTitle: null, parentUrl: null, heading: null },
+          ];
+          buildMobileNavList(navigationData.mainNav);
+          mobileNav.focus();
+        }
+        function closeMobileNav() {
+          mobileNav.classList.remove('open');
+          document.body.style.overflow = '';
+          navStack = [];
+        }
+        mobileNavToggle.onclick = openMobileNav;
+        // Remove old close handler, now handled in buildMobileNavList
+        mobileNav.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') {
+            closeMobileNav();
+          }
+        });
+        // Close on click outside nav
+        // document.addEventListener('click', function (e) {
+        //   if (
+        //     mobileNav.classList.contains('open') &&
+        //     !mobileNav.contains(e.target) &&
+        //     !mobileNavToggle.contains(e.target)
+        //   ) {
+        //     closeMobileNav();
+        //   }
+        // });
+      })();
     </script>
   </body>
 </html>
