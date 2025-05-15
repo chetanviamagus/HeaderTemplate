@@ -1,23 +1,27 @@
 .site-footer {
   background-color: #F6F6F6;
-  border-top: 1px solid #e5e5e5;
+  border-top: 30px solid #075697;
   /* padding: 48px 0; */
 }
 
 .site-footer__bottom {
   margin-top: 48px;
-  padding: 24px 0;
+  padding-top: 38px;
+    padding-bottom: 40px;
+
   border-top: 1px solid #e5e5e5;
   background-color: #FFFFFF;
   width: 100%;
+  
 }
 
 .site-footer__bottom-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin: 0px 60px;
+  width: 100%;
   max-width: var(--max-width-container);
+  margin: auto;
 }
 
 .site-footer__company-info {
@@ -27,6 +31,7 @@
   color: var(--color-gray);
   font-family: var(--font-family-base);
   font-size: var(--font-size-base);
+  
 }
 
 .site-footer__logo {
@@ -45,7 +50,7 @@
 .site-footer__right-section {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 60px;
 }
 
 .site-footer__social-links {
@@ -56,13 +61,17 @@
 }
 
 .site-footer__careers-btn {
+  width: 126px;
+  height: 42px;
+  text-align: center;
+  align-content: center;
   background-color: var(--color-white);
   border: 1px solid var(--color-primary);
   border-radius: var(--border-radius);
   color: var(--color-primary);
   font-family: var(--font-family-base);
   font-size: var(--font-size-base);
-  font-weight: 500;
+  font-weight: 600;
   padding: 8px 24px;
   text-decoration: none;
   transition: var(--transition-base);
@@ -83,8 +92,8 @@
 }
 
 .site-footer__social-icon {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height:30px;
 }
 
 .site-footer__address {
@@ -102,7 +111,7 @@
 }
 
 .site-footer__social-icons {
-  display: flex;
+    display: flex;
   align-items: center;
   gap: 16px;
 }
@@ -120,10 +129,11 @@
 .site-footer__copyright {
   color: var(--color-gray);
   font-size: 12px;
-  margin: 24px 60px;
+  margin: 24px auto;
   text-align: left;
   /* border-top: 1px solid #e5e5e5; */
   padding-top: 16px;
+  max-width: var(--max-width-container);
 }
 
 .site-footer__container {
@@ -135,8 +145,8 @@
 .site-footer__grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 32px;
-  margin: 40px 60px;
+  max-width: var(--max-width-container);
+  margin: 40px auto;
 }
 
 .site-footer__section {
@@ -156,7 +166,7 @@
 .site-footer__links {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   list-style: none;
   margin: 0;
   padding: 0;
