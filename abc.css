@@ -1,4 +1,33 @@
-/* Add/replace CSS for submenu flex layout */
+/* Desktop styles */
+@media (min-width: 992px) {
+  .site-header__logo-nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+  }
+
+  .site-header__navigation {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .site-header__top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 8px 24px;
+    background: var(--color-primary);
+  }
+
+  #mobile-nav-toggle,
+  #mobile-nav {
+    display: none;
+  }
+}
+
+/* Tablet and mobile styles */
 @media (max-width: 991px) {
   .site-header__logo-nav-bar,
   .site-header__navigation,
