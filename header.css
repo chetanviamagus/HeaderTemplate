@@ -587,22 +587,15 @@ a.ecaps-header-nav img {
 }
 
 #mobile-nav-toggle {
-  display: none;
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  z-index: 1200;
   background: none;
   border: none;
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
 }
 #mobile-nav-toggle .material-symbols-outlined {
-  font-size: 32px;
-  color: var(--color-primary);
+  font-size: 40px !important;
+  color: var(--color-white);
 }
 #mobile-nav {
   display: none;
@@ -723,7 +716,7 @@ a.ecaps-header-nav img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 26px 70px 14px 70px;
+  padding: 33px 70px 20px 70px;
   border-bottom: 0;
 }
 .mobile-nav-close-text {
@@ -748,7 +741,7 @@ a.ecaps-header-nav img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 30px 70px 17px 70px;
+  padding: 33px 70px 20px 70px;
   min-height: 64px;
   border-bottom: 1px solid #e5e7eb;
 }
@@ -776,13 +769,11 @@ a.ecaps-header-nav img {
   font-size: 32px;
   color: #333;
   cursor: pointer;
-  margin-left: 6px;
+  margin-left: 53px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 24px;
-  width: 24px;
 }
 .mobile-nav-viewall {
   font-size: 15px;
@@ -801,7 +792,7 @@ a.ecaps-header-nav img {
   font-family: var(--font-family-base);
   font-weight: 700;
   color: #222;
-  padding: 32px 24px 8px 24px;
+  padding: 22px 76px 23px 70px;
   margin: 0;
   background: #fff;
 }
@@ -857,8 +848,19 @@ a.ecaps-header-nav img {
 }
 /* Add/replace CSS for submenu flex layout */
 @media (max-width: 991px) {
+  .mobile-nav-add {
+    font-size: 24px !important;
+  }
+
+  .mobile-nav-arrow {
+    font-size: 28px !important;
+  }
+  .site-header {
+    border: 0;
+    background-color: transparent;
+  }
   .mobile-nav-heading {
-    padding: 26px 76px 23px 70px;
+    padding: 22px 76px 10px 70px;
     font-size: 24px;
     font-weight: 500;
   }
@@ -980,7 +982,7 @@ a.ecaps-header-nav img {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 0px 24px 0 0;
+    padding: 0px 1px 0 0;
     font-size: 18px;
     color: var(--color-primary);
     background: none;
@@ -1034,5 +1036,59 @@ a.ecaps-header-nav img {
   }
   .mobile-nav-search-icon {
     right: 52px !important;
+  }
+}
+
+.mobile-header-bar {
+  display: none;
+}
+@media (max-width: 991px) {
+  .mobile-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background: #075697;
+    z-index: 2100;
+    padding: 40px 18px;
+  }
+  .mobile-header-logo {
+    height: 60px;
+    width: auto;
+    display: block;
+  }
+  .mobile-header-hamburger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    height: 44px;
+    width: 44px;
+  }
+  .mobile-header-hamburger .material-symbols-outlined {
+    font-size: 32px;
+    color: #fff;
+  }
+  /* Push down mobile nav and main content to avoid overlap */
+  #mobile-nav,
+  main,
+  .mobile-nav-search-row,
+  .mobile-nav-header-row,
+  .mobile-nav-close-row,
+  .mobile-nav-subheader-row,
+  .mobile-nav-heading {
+    margin-top: 0 !important;
+  }
+}
+@media (min-width: 992px) {
+  .mobile-header-bar {
+    display: none !important;
   }
 }

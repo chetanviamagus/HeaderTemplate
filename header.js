@@ -178,7 +178,7 @@
       backLink.className = 'submenu-back';
       const backIcon = document.createElement('span');
       backIcon.className = 'material-symbols-outlined';
-      backIcon.textContent = 'arrow_back';
+      backIcon.textContent = 'arrow_back_ios';
       backLink.appendChild(backIcon);
       backLink.appendChild(document.createTextNode('Product Menu'));
 
@@ -665,7 +665,7 @@
         // Back button
         const backBtn = document.createElement('button');
         backBtn.className = 'mobile-nav-back';
-        backBtn.innerHTML = '<span class="material-symbols-outlined">arrow_back</span>';
+        backBtn.innerHTML = '<span class="material-symbols-outlined">arrow_back_ios</span>';
         backBtn.onclick = e => {
           e.stopPropagation();
           if (navStack.length > 1) {
@@ -749,9 +749,9 @@
         btn.innerHTML =
           (item.icon ? `<img src="${item.icon}" alt="" />` : '') +
           `<span>${item.title}</span>` +
-          (hasChildren || item.url
-            ? '<span class="mobile-nav-arrow material-symbols-outlined">chevron_right</span>'
-            : '');
+          (hasChildren
+            ? '<span class="material-symbols-outlined mobile-nav-add">add</span>'
+            : '<span class="material-symbols-outlined mobile-nav-arrow">chevron_right</span>');
         btn.onclick = e => {
           e.stopPropagation();
           if (hasChildren) {
@@ -779,11 +779,21 @@
       ];
       buildMobileNavList(navigationData.mainNav);
       mobileNav.focus();
+      // Hide the mobile header bar
+      const mobileHeaderBar = document.querySelector('.mobile-header-bar');
+      if (mobileHeaderBar) {
+        mobileHeaderBar.style.display = 'none';
+      }
     }
     function closeMobileNav() {
       mobileNav.classList.remove('open');
       document.body.style.overflow = '';
       navStack = [];
+      // Show the mobile header bar
+      const mobileHeaderBar = document.querySelector('.mobile-header-bar');
+      if (mobileHeaderBar) {
+        mobileHeaderBar.style.display = 'flex';
+      }
     }
     mobileNavToggle.onclick = openMobileNav;
     // Remove old close handler, now handled in buildMobileNavList
@@ -792,15 +802,5 @@
         closeMobileNav();
       }
     });
-    // Close on click outside nav
-    // document.addEventListener('click', function (e) {
-    //   if (
-    //     mobileNav.classList.contains('open') &&
-    //     !mobileNav.contains(e.target) &&
-    //     !mobileNavToggle.contains(e.target)
-    //   ) {
-    //     closeMobileNav();
-    //   }
-    // });
   })();
 })();
