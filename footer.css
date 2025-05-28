@@ -1,26 +1,124 @@
+:root {
+  --color-black: #000;
+  --color-gray: #333;
+  --color-light-gray: #666;
+  --color-primary: #075697;
+  --color-white: #fff;
+  --border-radius: 21px;
+  --font-family-base: 'HelveticaCE', sans-serif;
+  --font-size-base: 14px;
+  --font-size-nav: 18px;
+  --transition-base: all 0.2s ease-in-out;
+  --max-width-container: 1248px;
+  --color-bg-popup: #f7f8fa;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/* Font Definitions */
+
+@font-face {
+  font-family: 'Helvetica-Bold';
+  src: url('./fonts/Helvetica-Bold.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica-Condensed-Black';
+  src: url('./fonts/Helvetica-Condensed-Black.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica-Condensed-Bold';
+  src: url('./fonts/Helvetica-Condensed-Bold.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica-Condensed';
+  src: url('./fonts/Helvetica-Condensed.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica-Narrow-Bold';
+  src: url('./fonts/Helvetica-Narrow-Bold.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica-Narrow-Oblique';
+  src: url('./fonts/Helvetica-Narrow-Oblique.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('./fonts/Helvetica.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HelveticaCE-CondBold';
+  src: url('./fonts/HelveticaCE-CondBold.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HelveticaCE-Narrow';
+  src: url('./fonts/HelveticaCE-Narrow.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HelveticaCE';
+  src: url('./fonts/HelveticaCE.otf') format('opentype'),
+    url('./fonts/HelveticaCE.woff') format('woff'), url('./fonts/HelveticaCE.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HelveticaConBQ-Medium';
+  src: url('./fonts/HelveticaConBQ-Medium.otf') format('opentype');
+  font-display: swap;
+}
+
+.material-symbols-outlined {
+  font-size: 22px !important;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .site-footer {
-  background-color: #F6F6F6;
+  background-color: #f6f6f6;
   border-top: 30px solid #075697;
   /* padding: 48px 0; */
 }
 
 @media (max-width: 879px) {
- .site-footer {
-  width: 878px;
-  height: 424px;
-  background-color:rgba(246, 246, 246, 1);
+  .site-footer {
+    width: 878px;
+    height: 424px;
+    background-color: rgba(246, 246, 246, 1);
   }
 }
-
 
 .site-footer__bottom {
   margin-top: 48px;
   padding-top: 38px;
   padding-bottom: 40px;
   border-top: 1px solid #e5e5e5;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   width: 100%;
-  
 }
 
 .site-footer__bottom-container {
@@ -39,13 +137,12 @@
   color: var(--color-gray);
   font-family: var(--font-family-base);
   font-size: var(--font-size-base);
-  
 }
 
 .site-footer__logo {
   height: auto;
   max-width: 180px;
-  width: 100%
+  width: 100%;
 }
 
 .site-footer__legal-links {
@@ -101,7 +198,7 @@
 
 .site-footer__social-icon {
   width: 30px;
-  height:30px;
+  height: 30px;
 }
 
 .site-footer__address {
@@ -119,7 +216,7 @@
 }
 
 .site-footer__social-icons {
-    display: flex;
+  display: flex;
   align-items: center;
   gap: 16px;
 }
@@ -188,7 +285,7 @@
 
 @media (min-width: 1024px) {
   .site-footer__links {
-    display: block !important;
+    display: flex !important;
   }
   .site-footer__toggle-icon {
     display: none;
