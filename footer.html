@@ -53,7 +53,13 @@
         grid-template-columns: repeat(6, 1fr);
         gap: 32px;
       }
-
+      .footer-info a:after {
+        content: '|';
+        margin-left: 12px;
+      }
+      .footer-info a:last-child::after {
+        content: none;
+      }
       .footer-section {
         min-width: 0;
       }
@@ -291,11 +297,11 @@
           width: 100%;
         }
         .footer-main {
-          background-color: #FFFFFF;
+          background-color: #ffffff;
           display: block;
           padding: 24px 8px 0 8px;
-          width : 696px;
-          height : 540px;
+          width: 696px;
+          height: 540px;
         }
         .footer-section {
           border-bottom: 1px solid var(--footer-border);
@@ -362,7 +368,7 @@
           align-items: center;
           order: 3;
           width: 100%;
-              }
+        }
         .footer-social-container {
           order: 2;
           display: flex;
@@ -616,14 +622,15 @@
           </div>
           <div class="footer-info">
             <div class="footer-info-links">
-              <a href="#">Shipping |</a> <a href="#">Terms &amp; Conditions |</a>
-              <a href="#">Compliance Policies |</a>
+              <a href="#">Shipping</a>
+              <a href="#">Terms &amp; Conditions</a>
+              <a href="#">Compliance Policies</a>
               <a href="#">Privacy Statement</a>
             </div>
             <div class="footer-info-contact">
-              <a class="footer-address" href="#">P.O. Box 410 Schofield, WI 54476 |</a>
+              <a class="footer-address" href="#">P.O. Box 410 Schofield, WI 54476</a>
               <div class="footer-contact-group">
-                <a href="#">(715) 359-6171 |</a>
+                <a href="#">(715) 359-6171</a>
                 <a href="#">Contact Us</a>
               </div>
             </div>
