@@ -237,7 +237,8 @@
       }
       .footer-copyright {
         font-size: 0.95rem;
-        color: #888;
+        color: #333333;
+
         margin-top: 8px;
         margin-bottom: 0;
       }
@@ -261,10 +262,10 @@
       }
 
       /* Mobile styles */
-      @media (max-width: 768px) {
+      @media (max-width: 879px) {
         .footer-info-contact {
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
           gap: 0.5rem;
         }
 
@@ -283,15 +284,18 @@
         }
         .footer-bottom-main {
           display: flex;
-          flex-direction: column;
+          flex-wrap: wrap;
           justify-content: space-between;
           align-items: center;
           gap: 32px;
           width: 100%;
         }
         .footer-main {
+          background-color: #FFFFFF;
           display: block;
           padding: 24px 8px 0 8px;
+          width : 696px;
+          height : 540px;
         }
         .footer-section {
           border-bottom: 1px solid var(--footer-border);
@@ -321,13 +325,14 @@
           position: relative;
           outline: none;
           border-radius: 0;
-          border-bottom: 1px solid var(--footer-border);
+          /* border-bottom: 1px solid var(--footer-border); */
         }
         .footer-accordion-panel {
           display: none;
           padding: 0 0 16px 0;
           background: none;
         }
+
         .footer-accordion-panel[aria-hidden='false'] {
           display: block;
         }
@@ -356,7 +361,8 @@
           margin-top: 0;
           align-items: center;
           order: 3;
-        }
+          width: 100%;
+              }
         .footer-social-container {
           order: 2;
           display: flex;
@@ -364,12 +370,13 @@
         }
         .footer-info-links {
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
           gap: 11px;
           align-items: center;
         }
         .footer-copyright {
           margin-top: 8px;
+          align-self: anchor-center;
         }
       }
 
@@ -403,7 +410,7 @@
           margin-top: 32px;
           margin-bottom: 0;
           font-size: 0.95rem;
-          color: #888;
+          color: #333333;
         }
         .footer-info {
           margin-top: 0;
@@ -609,14 +616,14 @@
           </div>
           <div class="footer-info">
             <div class="footer-info-links">
-              <a href="#">Shipping</a> <a href="#">Terms &amp; Conditions</a>
-              <a href="#">Compliance Policies</a>
+              <a href="#">Shipping |</a> <a href="#">Terms &amp; Conditions |</a>
+              <a href="#">Compliance Policies |</a>
               <a href="#">Privacy Statement</a>
             </div>
             <div class="footer-info-contact">
-              <a class="footer-address" href="#">P.O. Box 410 Schofield, WI 54476</a>
+              <a class="footer-address" href="#">P.O. Box 410 Schofield, WI 54476 |</a>
               <div class="footer-contact-group">
-                <a href="#">(715) 359-6171</a>
+                <a href="#">(715) 359-6171 |</a>
                 <a href="#">Contact Us</a>
               </div>
             </div>
