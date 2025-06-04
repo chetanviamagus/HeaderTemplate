@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       :root {
+        --color-black: #000;
+        --color-gray: #333;
+        --color-light-gray: #666;
+        --color-primary: #075697;
+        --color-white: #fff;
+        --border-radius: 21px;
+        --font-family-base: 'HelveticaCE', sans-serif;
+        --font-size-base: 14px;
+        --font-size-nav: 18px;
+        --transition-base: all 0.2s ease-in-out;
+        --max-width-container: 1248px;
+        --color-bg-popup: #f7f8fa;
         --footer-bg: #f8f8f8;
         --footer-text: #222;
         --footer-link: #222;
@@ -30,6 +42,75 @@
       *:before,
       *:after {
         box-sizing: inherit;
+      }
+
+      /* Font Definitions */
+      @font-face {
+        font-family: 'Helvetica-Bold';
+        src: url('./fonts/Helvetica-Bold.ttf') format('truetype');
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Helvetica-Condensed-Black';
+        src: url('./fonts/Helvetica-Condensed-Black.otf') format('opentype');
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Helvetica-Condensed-Bold';
+        src: url('./fonts/Helvetica-Condensed-Bold.otf') format('opentype');
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Helvetica-Condensed';
+        src: url('./fonts/Helvetica-Condensed.otf') format('opentype');
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Helvetica-Narrow-Bold';
+        src: url('./fonts/Helvetica-Narrow-Bold.otf') format('opentype');
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Helvetica-Narrow-Oblique';
+        src: url('./fonts/Helvetica-Narrow-Oblique.otf') format('opentype');
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Helvetica';
+        src: url('./fonts/Helvetica.otf') format('opentype');
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'HelveticaCE-CondBold';
+        src: url('./fonts/HelveticaCE-CondBold.otf') format('opentype');
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'HelveticaCE-Narrow';
+        src: url('./fonts/HelveticaCE-Narrow.otf') format('opentype');
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'HelveticaCE';
+        src: url('./fonts/HelveticaCE.otf') format('opentype'),
+          url('./fonts/HelveticaCE.woff') format('woff'),
+          url('./fonts/HelveticaCE.woff2') format('woff2');
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'HelveticaConBQ-Medium';
+        src: url('./fonts/HelveticaConBQ-Medium.otf') format('opentype');
+        font-display: swap;
       }
 
       body {
@@ -62,8 +143,9 @@
       }
 
       .footer-heading {
-        font-size: 1.25rem;
-        font-weight: 600;
+        font-family: var(--font-family-base);
+        font-size: 18px;
+        font-weight: 500;
         margin-bottom: 16px;
         color: var(--footer-heading);
         letter-spacing: 0.01em;
@@ -91,13 +173,14 @@
 
       /* Accordion styles (hidden on desktop) */
       .footer-accordion-btn {
+        font-family: var(--font-family-base);
         display: none;
         width: 100%;
         background: none;
         border: none;
         text-align: left;
-        font-size: 1.25rem;
-        font-weight: 600;
+        font-size: 18px;
+        font-weight: 500;
         color: var(--footer-heading);
         padding: 20px 16px 20px 0;
         cursor: pointer;
@@ -296,7 +379,6 @@
           margin: 0 90px;
         }
         .footer-main {
-          
           display: flex;
           flex-direction: column;
           padding: 24px 8px 0 8px;
@@ -402,9 +484,8 @@
       @media (max-width: 409px) {
         .footer-info a:after {
           content: 'none';
-        } 
-       }
-      
+        }
+      }
 
       @media (min-width: 1025px) {
         .footer-bottom {
