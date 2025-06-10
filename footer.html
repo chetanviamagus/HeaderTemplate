@@ -405,6 +405,16 @@
         .footer-heading {
           display: none;
         }
+
+        .footer-accordion-panel[aria-hidden='false'] {
+          display: block;
+        }
+        .footer-accordion-panel {
+          display: none;
+          padding: 0 0 16px 0;
+          background: none;
+        }
+
         .footer-accordion-btn {
           display: block;
           width: 100%;
@@ -421,15 +431,7 @@
           border-radius: 0;
           /* border-bottom: 1px solid var(--footer-border); */
         }
-        .footer-accordion-panel {
-          display: none;
-          padding: 0 0 16px 0;
-          background: none;
-        }
-
-        .footer-accordion-panel[aria-hidden='false'] {
-          display: block;
-        }
+        
         .footer-bottom {
           flex-direction: column;
           align-items: stretch;
@@ -495,10 +497,65 @@
       }
 
       /* Mobile styles */
-      @media (max-width: 767px) {
+      @media (max-width: 768px) {
         .footer-info a:after {
-          content: 'none';
+          content: none;
         }
+        .footer-accordion-panel[aria-hidden='false'] {
+          display: block;
+        }
+        .footer-accordion-panel {
+          display: none;
+          padding: 0 0 16px 0;
+          background: none;
+        }
+
+        .footer-section {
+          background-color: #ffffff;
+          padding: 0 20px;
+        }
+
+       .footer-main {
+          display: flex;
+          flex-direction: column;
+          padding: 0 8px;
+          gap: 2px;
+          width: 100%;
+          margin: 45px 38px;
+        }
+
+        .footer-bottom-main {
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+          align-items: center;
+          /* width: auto;
+          margin: 0 auto; */
+        }
+
+        .footer-logo {
+          order: 1;
+        }
+
+        .footer-social-container {
+          order: 2;
+          display: flex;
+          gap: 24px;
+        }
+
+        .footer-info {
+          flex-direction: column;
+          display: flex;
+          order: 3;
+          gap: 11px;
+        }
+
+        .footer-info-links, .footer-info-contact {
+             flex-direction: column;
+             align-items: center; 
+        }
+
+            
       }
 
       @media (min-width: 1024px) {
