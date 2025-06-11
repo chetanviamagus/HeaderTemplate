@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Visits</title>
+    <link rel="stylesheet" href="./common.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&URL_ADDRESS"
+    />
+    <style>
+      .font-16 {
+        font-size: 16px;
+      }
+      .customer-visits {
+        background-color: var(--color-primary);
+        padding: 31px 39px 39px 39px;
+        color: var(--color-white);
+        max-width: 405px;
+        display: flex;
+        gap: 6px;
+        flex-direction: column;
+      }
+      .customer-visits h2 {
+        font-family: var(--font-family-helvetic-condensed-bold);
+        font-size: 30px;
+        font-weight: 700;
+        padding: 0;
+        margin: 0;
+      }
+      .customer-visits p {
+        font-family: var(--font-family-helvetic-condensed);
+        font-size: 22px;
+        font-weight: 400;
+        padding: 0;
+        margin: 0 0 21px 0;
+        display: inline-block;
+      }
+      .customer-visits a {
+        font-family: var(--font-family-helvetic-condensed-bold);
+        background-color: var(--color-orange);
+        padding: 5px 21px;
+        border-radius: 7px;
+        border: 1px solid var(--color-white);
+        text-transform: uppercase;
+        color: var(--color-white);
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 700;
+        display: flex;
+        width: fit-content;
+        gap: 9px;
+        align-items: center;
+      }
+      .customer-visits a:hover {
+        text-decoration: none;
+        background-color: var(--color-white);
+        color: var(--color-orange);
+      }
+    </style>
+  </head>
+  <body>
+    <article class="customer-visits" aria-label="Customer Visit Planner">
+      <h2>Customer Visit Planner</h2>
+      <p>Reserve a new visit or continue planning an existing one.</p>
+      <a href="#"
+        >ACCESS THE PLANNER NOW
+        <span class="material-symbols-outlined font-16"> open_in_new </span></a
+      >
+    </article>
+  </body>
+</html>
