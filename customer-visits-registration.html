@@ -172,18 +172,21 @@
         text-align: center;
       }
       .customer-account-form {
+        font-family: var(--font-family-helvetic-ce);
         max-width: 600px;
         margin: 0 auto;
         text-align: center;
       }
       .customer-account-form h2 {
-        font-size: 24px;
+        font-size: 19px;
         font-family: var(--font-family-helvetic-ce-bold);
-        margin-bottom: 24px;
+        margin-bottom: 33px;
+        text-align: left;
       }
       .account-label {
         display: block;
-        font-size: 18px;
+        font-size: 14px;
+        font-family: var(--font-family-helvetic-ce);
         margin-bottom: 8px;
         text-align: left;
       }
@@ -192,23 +195,23 @@
         padding: 10px;
         font-size: 18px;
         border-radius: 6px;
-        border: 1px solid #757575;
+        border: 1px solid #333333;
         margin-bottom: 8px;
       }
       .account-info {
-        color: #757575;
-        font-size: 16px;
-        margin-bottom: 24px;
+        color: #969696;
+        font-size: 14px;
+        margin-bottom: 37px;
         text-align: left;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
         cursor: pointer;
         user-select: none;
         font-weight: 500;
       }
       .account-info .material-symbols-outlined {
-        font-size: 22px;
+        font-size: 15px !important;
         vertical-align: middle;
       }
       .account-info.expanded {
@@ -239,7 +242,7 @@
       .account-info-select {
         width: 100%;
         font-size: 16px;
-        border: 1px solid #757575;
+        border: 1px solid #333333;
         border-radius: 6px;
         padding: 10px;
         margin-bottom: 18px;
@@ -253,26 +256,32 @@
       }
       .account-info-charcount {
         font-size: 13px;
-        color: #757575;
+        color: #333333;
         float: right;
         margin-top: -28px;
         margin-bottom: 10px;
       }
       .not-found {
-        margin: 32px 0 24px 0;
+        margin: 0 0 49px 0;
         text-align: left;
+        font-size: 17px;
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
       }
       .create-account-link {
         color: #075697;
-        font-size: 18px;
+        font-size: 14px;
         text-decoration: underline;
         font-weight: 500;
+      }
+      .create-account-link .material-icon-md {
+        font-size: 18px !important;
       }
       .customer-account-actions {
         display: flex;
         gap: 20px;
-        justify-content: center;
-        margin: 32px 0 0 0;
+        padding-left: 8px;
       }
       .progress-bar {
         display: flex;
@@ -283,7 +292,7 @@
       }
       .progress-step {
         background: #e5e7eb;
-        color: #757575;
+        color: #333333;
         padding: 10px 32px;
         border-radius: 24px;
         font-size: 22px;
@@ -300,7 +309,7 @@
         vertical-align: middle;
       }
       .account-list {
-        border: 1px solid #757575;
+        border: 1px solid #333333;
         border-radius: 8px;
         max-height: 260px;
         overflow-y: auto;
@@ -330,8 +339,8 @@
         cursor: pointer;
       }
       .account-list-item input[type='checkbox']:checked {
-        background: #757575;
-        border-color: #757575;
+        background: #333333;
+        border-color: #333333;
       }
       .account-list-item input[type='checkbox']:checked::after {
         content: '';
@@ -350,20 +359,21 @@
       .account-dropdown {
         position: relative;
         width: 100%;
-        margin-bottom: 18px;
+        margin-bottom: 14px;
       }
       .account-dropdown-field {
-        border: 1px solid #757575;
-        border-radius: 8px;
-        padding: 16px 48px 16px 16px;
-        font-size: 20px;
+        border: 1px solid #333333;
+        border-radius: 4px;
+        padding: 10px 15px;
+        font-size: 15px;
         background: #fff;
         cursor: pointer;
         display: flex;
         align-items: center;
-        min-height: 56px;
-        font-weight: 700;
+        min-height: 42px;
         transition: border-color 0.2s;
+        font-family: var(--font-family-helvetic-ce);
+        font-weight: 500;
       }
       .account-dropdown-field.open {
         border-color: #075697;
@@ -375,7 +385,7 @@
         top: 50%;
         transform: translateY(-50%);
         font-size: 28px;
-        color: #757575;
+        color: #333333;
         pointer-events: none;
       }
       .account-dropdown-list {
@@ -385,8 +395,8 @@
         top: 100%;
         z-index: 10;
         background: #fff;
-        border: 1px solid #757575;
-        border-radius: 8px;
+        border: 1px solid #333333;
+        border-radius: 4px;
         max-height: 260px;
         overflow-y: auto;
         margin-top: 4px;
@@ -395,20 +405,10 @@
         flex-direction: column;
         flex-wrap: nowrap;
         align-items: flex-start;
-        padding: 22px;
-        gap: 18px;
+        padding: 0;
+        gap: 0;
       }
-      .account-dropdown-header {
-        font-size: 20px;
-        font-weight: 400;
-        color: #757575;
-        padding: 16px 24px 8px 24px;
-        background: #fff;
-        border-bottom: 1px solid #e5e7eb;
-        position: sticky;
-        top: 0;
-        z-index: 1;
-      }
+
       .account-dropdown-item {
         display: flex;
         align-items: center;
@@ -417,6 +417,7 @@
         font-size: 15px;
         transition: background 0.2s;
         border-radius: 0;
+        width: 100%;
       }
       .account-dropdown-item.selected,
       .account-dropdown-item:hover {
@@ -448,8 +449,8 @@
         border-left: 2px solid #fff;
         border-bottom: 2px solid #fff;
         position: absolute;
-        left: 4px;
-        top: 5px;
+        left: 3px;
+        top: 4px;
         transform: rotate(-45deg);
       }
       .account-dropdown-label {
@@ -475,7 +476,7 @@
         font-size: 20px;
       }
       .account-dropdown-placeholder {
-        color: #757575;
+        color: #333333;
         font-weight: 400;
       }
     </style>
@@ -873,21 +874,21 @@
               ${
                 this.accountDropdownOpen
                   ? `<div class="account-dropdown-list">
-                       <div class="account-dropdown-header">Select</div>
+                      
                       ${customerAccounts
                         .map(
                           acc => `
-                        <label class="account-dropdown-item$${
+                        <label class="account-dropdown-item${
                           this.selectedAccountIds.includes(acc.id) ? ' selected' : ''
                         }">
-                          <input type="checkbox" value="$${
+                          <input type="checkbox" value="${
                             acc.id
-                          }" class="account-dropdown-checkbox" $${
+                          }" class="account-dropdown-checkbox" ${
                             this.selectedAccountIds.includes(acc.id) ? 'checked' : ''
                           } />
                           <span class="custom-checkbox"></span>
-                          <span class="account-dropdown-label">$${acc.name}</span>
-                          <span class="account-dropdown-city">- $${acc.city}</span>
+                          <span class="account-dropdown-label">${acc.name}</span>
+                          <span class="account-dropdown-city">- ${acc.city}</span>
                         </label>
                       `
                         )
