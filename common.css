@@ -1,14 +1,18 @@
 :root {
+  --color-light-blue: #00a8e4;
   --color-black: #000;
   --color-orange: #d97a24;
   --color-gray: #333;
   --color-light-gray: #666;
+  /* #57585A */
+  --color-dark-gray: #57585a;
   --color-primary: #075697;
   --color-white: #fff;
   --border-radius: 21px;
-  --font-family-base: 'HelveticaCE', sans-serif;
+  --font-family-helvetic-ce: 'HelveticaCE', sans-serif;
   --font-family-helvetic-condensed-bold: 'Helvetica-Condensed-Bold', sans-serif;
   --font-family-helvetic-condensed: 'Helvetica-Condensed', sans-serif;
+  --font-family-helvetic-ce-bold: 'HelveticaCE-CondBold', sans-serif;
   --font-size-base: 14px;
   --font-size-nav: 18px;
   --transition-base: all 0.2s ease-in-out;
