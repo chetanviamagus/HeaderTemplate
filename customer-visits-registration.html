@@ -1,0 +1,255 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="common.css" />
+    <style>
+      .customer-visit-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 24px;
+        font-family: Arial, sans-serif;
+      }
+      .customer-visit-table th,
+      .customer-visit-table td {
+        border: 1px solid #d1d5db;
+        padding: 16px 12px;
+        text-align: left;
+      }
+      .customer-visit-table th {
+        background: #0a4a7e;
+        color: #fff;
+        font-size: 18px;
+      }
+      .customer-visit-table td {
+        background: #fff;
+        color: #222;
+        font-size: 16px;
+      }
+      .group-availability-link {
+        color: #0a4a7e;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      .reserve-btn {
+        background: #0a4a7e;
+        color: #fff;
+        border: none;
+        border-radius: 24px;
+        padding: 8px 28px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .reserve-btn:hover {
+        background: #00335a;
+      }
+      /* Delete */
+      .start-a-new-reservation,
+      .continue-with-an-existing-reservation {
+        color: var(--color-white);
+        padding: 40px 40px 30px 40px;
+        font-family: var(--font-family-helvetic-ce);
+        max-width: 609px;
+      }
+      .start-a-new-reservation {
+        background-color: var(--color-light-blue);
+      }
+      .continue-with-an-existing-reservation {
+        background-color: var(--color-primary);
+      }
+      .start-a-new-reservation h2,
+      .continue-with-an-existing-reservation h2 {
+        font-family: var(--font-family-helvetic-ce);
+        font-size: 25px;
+        font-weight: 700;
+        padding: 0;
+        margin: 0 0 19px 0;
+      }
+      .start-a-new-reservation p,
+      .continue-with-an-existing-reservation p {
+        font-size: 18px;
+        font-weight: 400;
+        padding: 0;
+        margin: 0 0 33px 0;
+      }
+      .start-a-new-reservation a,
+      .continue-with-an-existing-reservation a {
+        background-color: var(--color-white);
+        padding: 8px 30px;
+        border-radius: 18px;
+        border: 1px solid var(--color-primary);
+        color: var(--color-primary);
+        text-decoration: none;
+        font-size: 18px;
+        display: flex;
+        width: fit-content;
+        gap: 9px;
+        align-items: center;
+      }
+      .start-a-new-reservation a:hover,
+      .continue-with-an-existing-reservation a:hover {
+        text-decoration: none;
+        background-color: var(--color-primary);
+        border-color: var(--color-white);
+        color: var(--color-white);
+      }
+    </style>
+  </head>
+  <body>
+    <article class="start-a-new-reservation" aria-label="Start a new reservation">
+      <h2>Start a new reservation</h2>
+      <p>Reserve a new visit and enter attendee information.</p>
+      <a href="#"> Start a reservation </a>
+    </article>
+    <script>
+      // Table configuration
+      const tableConfig = {
+        columns: [
+          { key: 'date', label: 'Date' },
+          { key: 'location', label: 'Location' },
+          { key: 'visitDuration', label: 'Visit Duration' },
+          { key: 'groupAvailability', label: 'Group Availability' },
+          { key: 'actions', label: '' },
+        ],
+      };
+
+      // Data for the table
+      const customerVisitAvailability = [
+        {
+          id: '1',
+          date: '2025-07-21',
+          location: 'Schofield, WI',
+          visitDuration: 'Monday Arrival; Wednesday Departure',
+          groupAvailability: 2,
+        },
+        {
+          id: '2',
+          date: '2025-07-23',
+          location: 'Schofield, WI',
+          visitDuration: 'Wednesday Arrival; Friday Departure',
+          groupAvailability: 1,
+        },
+        {
+          id: '3',
+          date: '2025-07-28',
+          location: 'Schofield, WI',
+          visitDuration: 'Monday Arrival; Wednesday Departure',
+          groupAvailability: 2,
+        },
+        {
+          id: '4',
+          date: '2025-08-04',
+          location: 'Schofield, WI',
+          visitDuration: 'Monday Arrival; Wednesday Departure',
+          groupAvailability: 2,
+        },
+        {
+          id: '5',
+          date: '2025-08-27',
+          location: 'Schofield, WI',
+          visitDuration: 'Wednesday Arrival; Friday Departure',
+          groupAvailability: 3,
+        },
+      ];
+
+      // Customer Visit Table Class
+      class CustomerVisitTable {
+        constructor(config, data) {
+          this.config = config;
+          this.data = data;
+        }
+
+        renderTableHeader() {
+          return `
+            <tr>
+                ${this.config.columns
+                  .map(
+                    col =>
+                      `<th${col.key === 'actions' ? ' style="width:120px;"' : ''}>${col.label}</th>`
+                  )
+                  .join('')}
+            </tr>
+            `;
+        }
+
+        renderTableRow(row) {
+          return `
+            <tr>
+                <td><b>${this.formatDate(row.date)}</b></td>
+                <td>${row.location}</td>
+                <td><b>${row.visitDuration}</b></td>
+                <td>
+                <a href="#" class="group-availability-link">
+                    ${row.groupAvailability} group${row.groupAvailability > 1 ? 's' : ''} available
+                </a>
+                </td>
+                <td>
+                <button class="reserve-btn" data-id="${row.id}">Reserve</button>
+                </td>
+            </tr>
+            `;
+        }
+
+        formatDate(dateStr) {
+          // Format as MM/DD/YYYY
+          const d = new Date(dateStr);
+          return d.toLocaleDateString('en-US');
+        }
+
+        render() {
+          return `
+            <table class="customer-visit-table">
+                <thead>${this.renderTableHeader()}</thead>
+                <tbody>
+                ${this.data.map(row => this.renderTableRow(row)).join('')}
+                </tbody>
+            </table>
+            `;
+        }
+      }
+
+      // Customer Visit Controller Class
+      class CustomerVisitController {
+        constructor() {
+          this.config = tableConfig;
+          this.data = customerVisitAvailability;
+          this.table = new CustomerVisitTable(this.config, this.data);
+          this.init();
+        }
+
+        init() {
+          document.querySelector('.start-a-new-reservation a').addEventListener('click', e => {
+            e.preventDefault();
+            this.showAvailabilityPage();
+          });
+        }
+
+        showAvailabilityPage() {
+          document.body.innerHTML = `
+            <h1 class="visits-title">Select a New Customer Visit</h1>
+            <p class="visits-title-description">
+                Reserve a new visit from the availability below.
+            </p>
+            <div id="customer-visit-table-container">
+                ${this.table.render()}
+            </div>
+            `;
+          this.attachReserveHandlers();
+        }
+
+        attachReserveHandlers() {
+          document.querySelectorAll('.reserve-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+              alert('Reserved visit ID: ' + btn.dataset.id);
+            });
+          });
+        }
+      }
+      document.addEventListener('DOMContentLoaded', function () {
+        new CustomerVisitController();
+      });
+    </script>
+  </body>
+</html>
